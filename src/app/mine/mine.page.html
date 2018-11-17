@@ -1,0 +1,19 @@
+<ion-header>
+    <ion-title>个人中心</ion-title>
+    <ion-item>
+        <ion-avatar slot="start">
+            <ion-img [src]="imgBaseUrl + 'default.jpg'" class="privateImage" *ngIf="userId"></ion-img>
+            <ion-img [src]="imgBaseUrl + 'default.jpg'" class="privateImage" *ngIf="!userId"></ion-img>
+        </ion-avatar>
+        <ion-label>
+            <ng-container *ngIf="userId">
+                <h2>{{userInfo?.name}}</h2>
+                <h3>{{userInfo?.userId}}</h3>
+                <p>{{userInfo?.content}}</p>
+            </ng-container>
+            <p *ngIf="!userId" [routerLink]="['/login']">登录|注册</p>
+        </ion-label>
+    </ion-item>
+</ion-header>
+<ion-content>
+</ion-content>
