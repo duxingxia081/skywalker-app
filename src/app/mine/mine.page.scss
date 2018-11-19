@@ -11,10 +11,21 @@ ion-header {
   width: 100%;
 }
 
-ion-header ion-item {
+ion-header ion-row {
   margin-top: 70px;
 }
 
-ion-header ion-item h2, h3, p {
+ion-header ion-row ion-label, h2, h3, p {
   color: #ffffff;
+}
+
+ion-buttons ion-button {
+  --border-style: solid;
+  --border-color: rgba(0, 0, 0, 0.13);
+  --border-width: 0.5px;
+  --height: 64px;
+  --padding-start: 7px;
+  --padding-end: 7px;
+  margin-left: 0px;
+  margin-right: 0px;
 }
