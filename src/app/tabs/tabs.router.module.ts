@@ -2,9 +2,11 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {TabsPage} from './tabs.page';
-import {HomePage} from '../home/home.page';
-import {AboutPage} from '../about/about.page';
 import {MinePage} from '../mine/mine.page';
+import {ActivityPage} from '../activity/activity.page';
+import {FriendPage} from '../friend/friend.page';
+import {SharePage} from '../share/share.page';
+import {DestinationPage} from '../destination/destination.page';
 
 const routes: Routes = [
     {
@@ -13,18 +15,28 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: '/tabs/(home:home)',
+                redirectTo: '/tabs/(friend:friend)',
                 pathMatch: 'full',
             },
             {
-                path: 'home',
-                outlet: 'home',
-                component: HomePage
+                path: 'friend',
+                outlet: 'friend',
+                component: FriendPage
             },
             {
-                path: 'about',
-                outlet: 'about',
-                component: AboutPage
+                path: 'activity',
+                outlet: 'activity',
+                component: ActivityPage
+            },
+            {
+                path: 'share',
+                outlet: 'share',
+                component: SharePage
+            },
+            {
+                path: 'destination',
+                outlet: 'destination',
+                component: DestinationPage
             },
             {
                 path: 'mine',
@@ -35,7 +47,7 @@ const routes: Routes = [
     },
     {
         path: '',
-        redirectTo: '/tabs/(home:home)',
+        redirectTo: '/tabs/(friend:friend)',
         pathMatch: 'full'
     }
 ];

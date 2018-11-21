@@ -17,9 +17,15 @@ export class MinePage implements OnInit {
     }
 
     ngOnInit(): void {
+        // weizh(测试初始化用）
+        this.userId = 'weizh';
     }
 
     checkLogin() {
         this.router.navigate(['/login']);
+    }
+
+    toMyInfoPage() {
+        this.router.navigateByUrl('/tabs/(myInfo:myInfo)');
     }
 }

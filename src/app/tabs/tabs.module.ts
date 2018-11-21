@@ -1,5 +1,4 @@
 import {IonicModule} from '@ionic/angular';
-import {RouterModule} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
@@ -7,9 +6,11 @@ import {FormsModule} from '@angular/forms';
 import {TabsPageRoutingModule} from './tabs.router.module';
 
 import {TabsPage} from './tabs.page';
-import {ContactPageModule} from '../mine/mine.module';
-import {AboutPageModule} from '../about/about.module';
-import {HomePageModule} from '../home/home.module';
+import {MinePageModule} from '../mine/mine.module';
+import {SharePageModule} from '../share/share.module';
+import {FriendPageModule} from '../friend/friend.module';
+import {DestinationPageModule} from '../destination/destination.module';
+import {ActivityPageModule} from '../activity/activity.module';
 
 @NgModule({
     imports: [
@@ -17,9 +18,11 @@ import {HomePageModule} from '../home/home.module';
         CommonModule,
         FormsModule,
         TabsPageRoutingModule,
-        HomePageModule,
-        AboutPageModule,
-        ContactPageModule
+        MinePageModule,
+        ActivityPageModule,
+        DestinationPageModule,
+        FriendPageModule,
+        SharePageModule
     ],
     declarations: [TabsPage]
 })
