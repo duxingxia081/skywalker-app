@@ -2,7 +2,7 @@ ion-title {
   size: 1.2rem;
   text-align: center;
   color: #ffffff;
-  margin-top: 0.5rem;
+  margin-top: 25px;
 }
 
 ion-header {
@@ -12,7 +12,7 @@ ion-header {
 }
 
 ion-header ion-row {
-  margin-top: 70px;
+  margin-top: 60px;
 }
 
 ion-header ion-row ion-label, h2, h3, p {
@@ -26,6 +26,8 @@ ion-buttons ion-button {
   --height: 64px;
   --padding-start: 7px;
   --padding-end: 7px;
+  --margin-top: 40px;
   margin-left: 0px;
   margin-right: 0px;
+  font-max-size: 1.2rem;
 }

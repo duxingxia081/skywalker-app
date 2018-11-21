@@ -1,21 +1,23 @@
 <ion-header>
     <ion-title>个人中心</ion-title>
-    <ion-row>
-        <ion-col>
-            <ion-avatar>
-                <ion-img [src]="imgBaseUrl + 'default.jpg'" class="privateImage" *ngIf="userId"></ion-img>
-                <ion-img [src]="imgBaseUrl + 'default.jpg'" class="privateImage" *ngIf="!userId"></ion-img>
-            </ion-avatar>
-        </ion-col>
-        <ion-col [size]="8" [pull]="2">
-            <ion-label *ngIf="userId">
-                <h2>{{userInfo?.name}}</h2>
-                <h3>{{userInfo?.userId}}</h3>
-                <p>{{userInfo?.content}}</p>
-            </ion-label>
-            <ion-label *ngIf="!userId" [routerLink]="['/login']">登录|注册</ion-label>
-        </ion-col>
-    </ion-row>
+    <ion-grid>
+        <ion-row>
+            <ion-col [size]="3">
+                <ion-avatar>
+                    <ion-img [src]="imgBaseUrl + 'default.jpg'" class="privateImage" *ngIf="userId"></ion-img>
+                    <ion-img [src]="imgBaseUrl + 'default.jpg'" class="privateImage" *ngIf="!userId"></ion-img>
+                </ion-avatar>
+            </ion-col>
+            <ion-col [size]="4" align-self-start>
+                <ion-label *ngIf="userId">
+                    <h2>{{userInfo?.name}}</h2>
+                    <h3>{{userInfo?.userId}}</h3>
+                    <p>{{userInfo?.content}}</p>
+                </ion-label>
+                <ion-label *ngIf="!userId" [routerLink]="['/login']">登录|注册</ion-label>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-header>
 <ion-content>
     <ion-buttons>
