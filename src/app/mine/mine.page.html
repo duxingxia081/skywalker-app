@@ -11,7 +11,7 @@
                 <ion-label [routerLink]="['/login']">登录|注册</ion-label>
             </ion-col>
         </ion-row>
-        <ion-row *ngIf="userId" (click)="toMyInfoPage()">
+        <ion-row *ngIf="userId" [routerLink]="['/mine/my-info']">
             <ion-col [size]="3">
                 <ion-avatar>
                     <ion-img [src]="imgBaseUrl + 'default.jpg'" class="privateImage"></ion-img>

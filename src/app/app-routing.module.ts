@@ -7,7 +7,8 @@ const routes: Routes = [
     {path: 'friend', loadChildren: './friend/friend.module#FriendPageModule'},
     {path: 'activity', loadChildren: './activity/activity.module#ActivityPageModule'},
     {path: 'share', loadChildren: './share/share.module#SharePageModule'},
-    {path: 'destination', loadChildren: './destination/destination.module#DestinationPageModule'}
+    {path: 'destination', loadChildren: './destination/destination.module#DestinationPageModule'},
+    {path: 'mine', loadChildren: './mine/mine.module#MinePageModule'}
 ];
 
 @NgModule({

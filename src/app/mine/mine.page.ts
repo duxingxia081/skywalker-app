@@ -26,6 +26,6 @@ export class MinePage implements OnInit {
     }
 
     toMyInfoPage() {
-        this.router.navigateByUrl('/tabs/(myInfo:myInfo)');
+        this.router.navigate(['/mine/my-info']);
     }
 }
