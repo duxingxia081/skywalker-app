@@ -18,7 +18,7 @@ export class MinePage implements OnInit {
 
     ngOnInit(): void {
         // weizh(测试初始化用）
-        this.userId = 'weizh';
+        // this.userId = 'weizh';
     }
 
     checkLogin() {

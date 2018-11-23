@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ToastController} from '@ionic/angular';
+import {DataService} from '../service/data.service';
 
 @Component({
     selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginPage implements OnInit {
     codeNumber: string;
     mobileCode: string;
 
-    constructor(public toastCtrl: ToastController) {
+    constructor(public toastCtrl: ToastController,
+                public dataService: DataService) {
     }
 
     ngOnInit() {
@@ -61,5 +63,6 @@ export class LoginPage implements OnInit {
             this.toastTip('请填写验证码');
             return;
         }
+        this.dataService.accountLogin(this.userName, this.userPwd, this.codeNumber).subscribe();
     }
 }
