@@ -1,6 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {ImgBaseUrl} from '../config/env';
+import {LocalStorageService} from '../service/local-storage.service';
+import {DataService} from '../service/data.service';
+import {ToastController} from '@ionic/angular';
+import {AppService} from '../service/app.service';
 
 @Component({
     selector: 'app-mine',
@@ -9,20 +13,34 @@ import {ImgBaseUrl} from '../config/env';
 })
 export class MinePage implements OnInit {
 
-    userId: string;
     userInfo: any;
     imgBaseUrl: string = ImgBaseUrl;
 
-    constructor(public router: Router) {
+    constructor(public appService: AppService,
+                public router: Router,
+                public dataService: DataService,
+                public localStorageService: LocalStorageService,
+                public toastCtrl: ToastController) {
     }
 
     ngOnInit(): void {
-        // weizh(测试初始化用）
-        // this.userId = 'weizh';
+        this.getUserInfo();
+        console.log(this.userInfo);
     }
 
-    checkLogin() {
-        this.router.navigate(['/login']);
+    public getUserInfo() {
+        if (this.dataService.getAuth()) {
+            this.dataService.getUserInfo().subscribe(res => {
+                this.userInfo = res.data;
+                console.log(res.data);
+            });
+        }
+    }
+
+    public exit() {
+        this.localStorageService.removeStore('authorization');
+        this.userInfo = {};
+        this.appService.userInfoEvent.emit('update');
     }
 
     toMyInfoPage() {

@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ToastController} from '@ionic/angular';
+import {Location} from '@angular/common';
 import {DataService} from '../service/data.service';
+import {LocalStorageService} from '../service/local-storage.service';
+import {AppService} from '../service/app.service';
 
 @Component({
     selector: 'app-login',
@@ -8,6 +11,7 @@ import {DataService} from '../service/data.service';
     styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+    userInfo: any;
     userName: string;
     userMobile: string;
     loginType: string;
@@ -17,8 +21,12 @@ export class LoginPage implements OnInit {
     codeNumber: string;
     mobileCode: string;
 
-    constructor(public toastCtrl: ToastController,
-                public dataService: DataService) {
+    constructor(
+        public location: Location,
+        public appService: AppService,
+        public toastCtrl: ToastController,
+        public dataService: DataService,
+        public localStorage: LocalStorageService) {
     }
 
     ngOnInit() {
@@ -63,6 +71,14 @@ export class LoginPage implements OnInit {
             this.toastTip('请填写验证码');
             return;
         }
-        this.dataService.accountLogin(this.userName, this.userPwd, this.codeNumber).subscribe();
+        this.dataService.accountLogin(this.userName, this.userPwd, this.codeNumber).subscribe(res => {
+            if (res.code !== '0') {
+                this.toastTip(res.message);
+            } else {
+                this.localStorage.setStore('authorization', res.data);
+                this.appService.userInfoEvent.emit('update');
+                this.location.back();
+            }
+        });
     }
 }
