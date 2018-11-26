@@ -5,14 +5,15 @@ import {LocalStorageService} from '../service/local-storage.service';
 import {DataService} from '../service/data.service';
 import {ToastController} from '@ionic/angular';
 import {AppService} from '../service/app.service';
+import {UserInfo} from '../class';
 
 @Component({
     selector: 'app-mine',
     templateUrl: 'mine.page.html',
     styleUrls: ['mine.page.scss']
 })
-export class MinePage implements OnInit {
-
+export class MinePage extends UserInfo implements OnInit {
+    authorization: string;
     userInfo: any;
     imgBaseUrl: string = ImgBaseUrl;
 
@@ -21,18 +22,17 @@ export class MinePage implements OnInit {
                 public dataService: DataService,
                 public localStorageService: LocalStorageService,
                 public toastCtrl: ToastController) {
+        super(appService, localStorageService);
     }
 
     ngOnInit(): void {
         this.getUserInfo();
-        console.log(this.userInfo);
     }
 
     public getUserInfo() {
-        if (this.dataService.getAuth()) {
+        if (this.authorization) {
             this.dataService.getUserInfo().subscribe(res => {
                 this.userInfo = res.data;
-                console.log(res.data);
             });
         }
     }
