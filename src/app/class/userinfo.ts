@@ -1,6 +1,7 @@
 import {OnDestroy, OnInit} from '@angular/core';
-import {AppService, LocalStorageService} from '../service';
+import {AppService} from '../service/app.service';
 import {Subscription} from 'rxjs';
+import {LocalStorageService} from '../service/local-storage.service';
 
 export class UserInfo implements OnInit, OnDestroy {
     public authorization: string;
