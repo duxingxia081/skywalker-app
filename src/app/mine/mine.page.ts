@@ -21,11 +21,10 @@ export class MinePage extends UserInfo implements OnInit {
                 public dataService: DataService,
                 public localStorageService: LocalStorageService,
                 public toastCtrl: ToastController) {
-        super(appService, localStorageService);
+        super(localStorageService);
     }
 
     ngOnInit(): void {
-        console.log('init2' + this.authorization);
         this.getUserInfo();
     }
 
@@ -41,6 +40,11 @@ export class MinePage extends UserInfo implements OnInit {
         this.localStorageService.removeStore('authorization');
         this.userInfo = {};
         this.appService.userInfoEvent.emit('update');
+    }
+
+    toLoginPage() {
+        console.log('loginPage');
+        this.router.navigate(['/login']);
     }
 
     toMyInfoPage() {

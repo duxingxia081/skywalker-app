@@ -1,14 +1,24 @@
 <ion-header>
-    <back-header wTitle="个人中心"></back-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="secondary">
+            <ion-button>
+                <ion-icon slot="icon-only" name="contact"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>个人中心</ion-title>
+    </ion-toolbar>
     <ion-grid>
-        <ion-row *ngIf="!userInfo">
+        <ion-row *ngIf="!userInfo" [routerLink]="['/login']">
             <ion-col [size]="3">
                 <ion-avatar>
                     <ion-img [src]="imgBaseUrl + 'default.jpg'" class="privateImage"></ion-img>
                 </ion-avatar>
             </ion-col>
             <ion-col align-self-start>
-                <ion-label [routerLink]="['/login']">登录|注册</ion-label>
+                <ion-label>登录|注册</ion-label>
+            </ion-col>
+            <ion-col [size]="1">
+                <ion-icon mode="ios" name="arrow-forward"></ion-icon>
             </ion-col>
         </ion-row>
         <ion-row *ngIf="userInfo" [routerLink]="['/mine/my-info']">
