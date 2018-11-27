@@ -13,7 +13,6 @@ import {UserInfo} from '../class';
     styleUrls: ['mine.page.scss']
 })
 export class MinePage extends UserInfo implements OnInit {
-    authorization: string;
     userInfo: any;
     imgBaseUrl: string = ImgBaseUrl;
 
@@ -26,6 +25,7 @@ export class MinePage extends UserInfo implements OnInit {
     }
 
     ngOnInit(): void {
+        console.log('init2' + this.authorization);
         this.getUserInfo();
     }
 

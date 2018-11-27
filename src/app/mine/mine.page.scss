@@ -1,21 +1,18 @@
 ion-title {
   size: 1.2rem;
-  text-align: center;
   color: #ffffff;
-  margin-top: 25px;
+  position: inherit;
 }
 
-ion-header {
-  background-image: url("../../assets/imgs/myback.jpg");
-  height: 160px;
-  width: 100%;
+ion-header{
+  background-color: #3880ff;
 }
 
-ion-header ion-row {
-  margin-top: 60px;
+ion-header ion-grid {
+  margin-top: 40px;
 }
 
-ion-header ion-row ion-label, h2, h3, p {
+ion-header ion-grid ion-row ion-label, h2, h3, p {
   color: #ffffff;
 }
 
@@ -24,10 +21,10 @@ ion-buttons ion-button {
   --border-color: rgba(0, 0, 0, 0.13);
   --border-width: 0.5px;
   --height: 64px;
-  --padding-start: 7px;
-  --padding-end: 7px;
-  --margin-top: 40px;
+  --padding-start: 4px;
+  --padding-end: 4px;
   margin-left: 0px;
   margin-right: 0px;
-  font-max-size: 1.2rem;
+  font-max-size: 1rem;
+  font-size: 16px;
 }

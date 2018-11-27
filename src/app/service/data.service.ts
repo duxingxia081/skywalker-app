@@ -7,7 +7,7 @@ import {ToastController} from '@ionic/angular';
     providedIn: 'root'
 })
 export class DataService {
-    serverUrl = 'http://localhost:9998/';
+    serverUrl = 'http://localhost:9999/';
     private readonly authorization: string;
     private readonly headers: HttpHeaders;
 
