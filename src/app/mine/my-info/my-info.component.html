@@ -23,7 +23,7 @@
         </ion-segment>
     </ion-toolbar>
     <ng-container [ngSwitch]="type">
-        <app-person-info *ngSwitchCase="'personInfo'"></app-person-info>
+        <app-person-info [userInfo]="userInfo" *ngSwitchCase="'personInfo'"></app-person-info>
         <app-password-info *ngSwitchCase="'passwordInfo'"></app-password-info>
         <app-safe-info *ngSwitchCase="'safeInfo'"></app-safe-info>
         <app-other-info *ngSwitchCase="'otherInfo'"></app-other-info>

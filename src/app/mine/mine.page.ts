@@ -1,10 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
 import {ImgBaseUrl} from '../config/env';
 import {LocalStorageService} from '../service/local-storage.service';
 import {DataService} from '../service/data.service';
-import {ToastController} from '@ionic/angular';
-import {AppService} from '../service/app.service';
 import {UserInfo} from '../class';
 
 @Component({
@@ -13,41 +10,13 @@ import {UserInfo} from '../class';
     styleUrls: ['mine.page.scss']
 })
 export class MinePage extends UserInfo implements OnInit {
-    userInfo: any;
-    imgBaseUrl: string = ImgBaseUrl;
+    private imgBaseUrl: string = ImgBaseUrl;
 
-    constructor(public appService: AppService,
-                public router: Router,
-                public dataService: DataService,
-                public localStorageService: LocalStorageService,
-                public toastCtrl: ToastController) {
-        super(localStorageService);
+    constructor(protected dataService: DataService,
+                protected localStorageService: LocalStorageService) {
+        super(dataService, localStorageService);
     }
 
     ngOnInit(): void {
-        this.getUserInfo();
-    }
-
-    public getUserInfo() {
-        if (this.authorization) {
-            this.dataService.getUserInfo().subscribe(res => {
-                this.userInfo = res.data;
-            });
-        }
-    }
-
-    public exit() {
-        this.localStorageService.removeStore('authorization');
-        this.userInfo = {};
-        this.appService.userInfoEvent.emit('update');
-    }
-
-    toLoginPage() {
-        console.log('loginPage');
-        this.router.navigate(['/login']);
-    }
-
-    toMyInfoPage() {
-        this.router.navigate(['/mine/my-info']);
     }
 }

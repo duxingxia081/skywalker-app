@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ImgBaseUrl} from '../../../config/env';
 
 @Component({
@@ -7,7 +7,7 @@ import {ImgBaseUrl} from '../../../config/env';
     styleUrls: ['./person-info.component.scss']
 })
 export class PersonInfoComponent implements OnInit {
-
+    @Input() userInfo: any;
     imgBaseUrl: string = ImgBaseUrl;
 
     constructor() {
