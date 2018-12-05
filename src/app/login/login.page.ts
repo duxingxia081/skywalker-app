@@ -84,6 +84,7 @@ export class LoginPage implements OnInit {
         }
         this.dataService.accountLogin(this.userName, this.userPwd, this.codeNumber).subscribe(res => {
             if (res.code !== '0') {
+                this.getCaptcha();
                 this.toastTip(res.message);
             } else {
                 this.localStorage.setStore('authorization', res.data);
