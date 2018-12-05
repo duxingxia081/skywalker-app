@@ -7,6 +7,7 @@ import {PersonInfoComponent} from './my-info/person-info/person-info.component';
 import {PasswordInfoComponent} from './my-info/password-info/password-info.component';
 import {SafeInfoComponent} from './my-info/safe-info/safe-info.component';
 import {OtherInfoComponent} from './my-info/other-info/other-info.component';
+import {ModifyUserComponent} from './my-info/person-info/modify-user/modify-user.component';
 
 @NgModule({
     imports: [
@@ -22,7 +23,10 @@ import {OtherInfoComponent} from './my-info/other-info/other-info.component';
             }
         ])
     ],
-    declarations: [MinePage, MyInfoComponent, PersonInfoComponent, PasswordInfoComponent, SafeInfoComponent, OtherInfoComponent]
+    declarations: [MinePage, MyInfoComponent, PersonInfoComponent, PasswordInfoComponent, SafeInfoComponent, OtherInfoComponent, ModifyUserComponent],
+    entryComponents: [
+        ModifyUserComponent
+    ]
 })
 export class MinePageModule {
 }

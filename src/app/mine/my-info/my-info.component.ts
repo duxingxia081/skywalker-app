@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserInfo} from '../../class';
 import {LocalStorageService} from '../../service/local-storage.service';
 import {DataService} from '../../service/data.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-my-info',
@@ -12,8 +13,9 @@ export class MyInfoComponent extends UserInfo implements OnInit {
     type = 'personInfo';
 
     constructor(protected dataService: DataService,
-                protected localStorageService: LocalStorageService) {
-        super(dataService, localStorageService);
+                protected localStorageService: LocalStorageService,
+                protected router: Router) {
+        super(dataService, localStorageService, router);
     }
 
     ngOnInit(): void {
