@@ -16,7 +16,7 @@ export class DataService {
     }
 
     getCaptcha(): any {
-        return this.http.get(this.serverUrl + 'captcha');
+        return this.http.get(this.serverUrl + 'captcha', {withCredentials: true});
     }
 
     accountLogin(userName: string, password: string, captcha: string): any {
