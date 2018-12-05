@@ -35,6 +35,7 @@ export class LoginPage implements OnInit {
         this.userPwd = '';
         this.loginType = 't-userName';
         this.showPwd = false;
+        this.getKaptcha();
     }
 
     async toastTip(message: string) {
@@ -44,6 +45,16 @@ export class LoginPage implements OnInit {
             position: 'middle'
         });
         toast.present();
+    }
+
+    getKaptcha() {
+        this.dataService.getKaptcha().subscribe(res => {
+            if (res.code !== '0') {
+                this.toastTip(res.message);
+            } else {
+                this.captchaCodeImg = res.data;
+            }
+        });
     }
 
     logIn() {

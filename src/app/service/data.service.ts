@@ -6,13 +6,15 @@ import {ToastController} from '@ionic/angular';
     providedIn: 'root'
 })
 export class DataService {
-    private readonly serverUrl = 'http://localhost:9999/';
+    private readonly serverUrl = 'http://localhost:9998/';
     private headers: HttpHeaders;
 
     constructor(private http: HttpClient,
                 public toastCtrl: ToastController) {
     }
-
+    getKaptcha(): any {
+        return this.http.get(this.serverUrl + 'kaptcha');
+    }
     accountLogin(userName: string, password: string, captcha_code: any): any {
         return this.http.post(this.serverUrl + 'auth', {userName, password, captcha_code});
     }
