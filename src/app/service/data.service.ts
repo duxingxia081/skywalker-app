@@ -46,4 +46,13 @@ export class DataService {
         });
         toast.present();
     }
+
+    getQrCode(): any {
+        const authorization = this.localStorageService.getStore('authorization');
+        if (!authorization) {
+            this.toastTip('请登陆后修改信息');
+        }
+        this.headers = new HttpHeaders().set('authorization', 'Bearer:' + authorization);
+        return this.http.get(this.serverUrl + 'qrCode', {headers: this.headers});
+    }
 }

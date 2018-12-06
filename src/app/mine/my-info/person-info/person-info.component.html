@@ -11,9 +11,9 @@
         <p slot="end">{{userInfo?.nickname}}</p>
         <ion-icon mode="ios" name="arrow-forward" slot="end"></ion-icon>
     </ion-item>
-    <ion-item>
+    <ion-item (click)="modifyUser('4','二维码')">
         <ion-label>二维码</ion-label>
-        <p slot="end">测试</p>
+        <img (click)="getQrCode()" src="{{userInfo?.qrCodeImage}}"/>
         <ion-icon mode="ios" name="arrow-forward" slot="end"></ion-icon>
     </ion-item>
     <ion-item>

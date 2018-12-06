@@ -22,11 +22,11 @@ export class LoginPage implements OnInit {
     mobileCode: string;
 
     constructor(
-        public location: Location,
-        public appService: AppService,
-        public toastCtrl: ToastController,
-        public dataService: DataService,
-        public localStorage: LocalStorageService) {
+        private location: Location,
+        private appService: AppService,
+        private toastCtrl: ToastController,
+        private dataService: DataService,
+        private localStorage: LocalStorageService) {
     }
 
     ngOnInit() {
@@ -37,7 +37,6 @@ export class LoginPage implements OnInit {
         this.showPwd = false;
         this.getCaptcha();
     }
-
     async toastTip(message: string) {
         const toast = await this.toastCtrl.create({
             message: message,
