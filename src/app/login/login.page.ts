@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {ToastController} from '@ionic/angular';
 import {Location} from '@angular/common';
 import {DataService} from '../service/data.service';
 import {LocalStorageService} from '../service/local-storage.service';
@@ -24,7 +23,6 @@ export class LoginPage implements OnInit {
     constructor(
         private location: Location,
         private appService: AppService,
-        private toastCtrl: ToastController,
         private dataService: DataService,
         private localStorage: LocalStorageService) {
     }
@@ -37,19 +35,10 @@ export class LoginPage implements OnInit {
         this.showPwd = false;
         this.getCaptcha();
     }
-    async toastTip(message: string) {
-        const toast = await this.toastCtrl.create({
-            message: message,
-            duration: 2000,
-            position: 'middle'
-        });
-        toast.present();
-    }
-
     getCaptcha() {
         this.dataService.getCaptcha().subscribe(res => {
             if (res.code !== '0') {
-                this.toastTip(res.message);
+                this.dataService.toastTip(res.message);
             } else {
                 this.captchaCodeImg = res.data;
             }
@@ -59,32 +48,32 @@ export class LoginPage implements OnInit {
     logIn() {
         if (this.loginType === 't-userName') {
             if (!this.userName) {
-                this.toastTip('请填写用户名');
+                this.dataService.toastTip('请填写用户名');
                 return;
             }
             if (!this.userPwd) {
-                this.toastTip('请填写密码');
+                this.dataService.toastTip('请填写密码');
                 return;
             }
         }
         if (this.loginType === 't-mobile') {
             if (!this.userMobile) {
-                this.toastTip('请填写手机号');
+                this.dataService.toastTip('请填写手机号');
                 return;
             }
             if (!this.mobileCode) {
-                this.toastTip('请填写手机验证码');
+                this.dataService.toastTip('请填写手机验证码');
                 return;
             }
         }
         if (!this.codeNumber) {
-            this.toastTip('请填写验证码');
+            this.dataService.toastTip('请填写验证码');
             return;
         }
         this.dataService.accountLogin(this.userName, this.userPwd, this.codeNumber).subscribe(res => {
             if (res.code !== '0') {
                 this.getCaptcha();
-                this.toastTip(res.message);
+                this.dataService.toastTip(res.message);
             } else {
                 this.localStorage.setStore('authorization', res.data);
                 this.appService.userInfoEvent.emit('update');
