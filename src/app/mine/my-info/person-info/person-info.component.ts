@@ -14,7 +14,7 @@ import {ModalController} from '@ionic/angular';
 export class PersonInfoComponent implements OnInit {
     @Input() userInfo: any;
     qrCode: string;
-    imgBaseUrl: string = ImgBaseUrl;
+    imgBaseUrl: string = ImgBaseUrl + 'default.jpg';
 
     constructor(private dataService: DataService,
                 private imagePicker: ImagePicker,
@@ -24,6 +24,7 @@ export class PersonInfoComponent implements OnInit {
 
     ngOnInit() {
         this.getQrCode();
+        this.getHeadImg();
     }
 
     async modifyUser(key, title) {
@@ -34,20 +35,15 @@ export class PersonInfoComponent implements OnInit {
         return await modal.present();
     }
 
-    getQrCode() {
-        this.dataService.getQrCode().subscribe(res => {
-            if (res.code === '0') {
-                this.userInfo.qrCodeImage = res.data;
-
-            }
-        });
-    }
-
     uploadHead() {
         this.imagePicker.hasReadPermission().then(
             res => {
                 if (!res) {
-                    this.imagePicker.requestReadPermission();
+                    this.imagePicker.requestReadPermission().then(
+                        result => {
+                            this.dataService.toastTip(result);
+                        }
+                    );
                 }
                 else {
                     this.uploadImgs();
@@ -66,8 +62,38 @@ export class PersonInfoComponent implements OnInit {
         };
         this.imagePicker.getPictures(options).then((results) => {
             console.log('Image URI: ' + results);
+            this.userInfo.headImage = 'data:image/gif;base64,' + results;
+            this.modifyImag();
         }, (err) => {
             this.dataService.toastTip('更新头像出错');
+        });
+    }
+
+    modifyImag() {
+        this.dataService.updateUserInfo(this.userInfo).subscribe(res => {
+            if (res.code !== '0') {
+                this.dataService.toastTip(res.message);
+                return;
+            }
+        });
+    }
+
+    getHeadImg() {
+        this.dataService.getData('users/headImg').subscribe(
+            res => {
+                if (null != res && res.code === '0' && res.data != null) {
+                    this.imgBaseUrl = res;
+                }
+            }
+        );
+    }
+
+    private getQrCode() {
+        this.dataService.getQrCode().subscribe(res => {
+            if (res.code === '0') {
+                this.userInfo.qrCodeImage = res.data;
+
+            }
         });
     }
 }

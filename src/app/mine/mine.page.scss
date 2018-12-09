@@ -12,19 +12,21 @@ ion-header ion-grid {
   margin-top: 20px;
 }
 
+ion-content ion-grid {
+  padding: 0px;
+}
+
 ion-header ion-grid ion-row ion-label, h2, h3, p {
   color: #ffffff;
 }
 
-ion-content ion-buttons ion-button {
-  --border-style: solid;
-  --border-color: rgba(0, 0, 0, 0.13);
-  --border-width: 0.5px;
-  --height: 64px;
-  --padding-start: 4px;
-  --padding-end: 4px;
-  margin-left: 0px;
-  margin-right: 0px;
-  font-max-size: 1rem;
-  font-size: 16px;
+ion-content ion-grid ion-row ion-col {
+  border: 0.5px solid rgba(0, 0, 0, 0.13);
+  height: 64px;
+  text-align: center;
+}
+
+ion-content ion-grid ion-row ion-col p {
+  color: #000;
+  margin-top: 0px;
 }

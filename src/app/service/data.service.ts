@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ToastController} from '@ionic/angular';
 import {LocalStorageService} from './local-storage.service';
+import {of} from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -54,5 +55,18 @@ export class DataService {
         }
         this.headers = new HttpHeaders().set('authorization', 'Bearer:' + authorization);
         return this.http.get(this.serverUrl + 'qrCode', {headers: this.headers});
+    }
+
+    getData(uri): any {
+        const authorization = this.localStorageService.getStore('authorization');
+        if (!authorization) {
+            return of(null);
+        }
+        this.headers = new HttpHeaders().set('authorization', 'Bearer:' + authorization);
+        return this.http.get(this.serverUrl + uri, {headers: this.headers});
+    }
+
+    postDataNotLogin(uri, data): any {
+        return this.http.post(this.serverUrl + uri, data, {withCredentials: true});
     }
 }

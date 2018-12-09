@@ -1,19 +1,17 @@
 import {Component, OnInit} from '@angular/core';
+import {DataService} from '../../service/data.service';
 import {Location} from '@angular/common';
-import {DataService} from '../service/data.service';
-import {LocalStorageService} from '../service/local-storage.service';
-import {AppService} from '../service/app.service';
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.page.html',
-    styleUrls: ['./login.page.scss'],
+    selector: 'app-rigister',
+    templateUrl: './rigister.component.html',
+    styleUrls: ['./rigister.component.scss']
 })
-export class LoginPage implements OnInit {
+export class RigisterComponent implements OnInit {
     userInfo: any;
     userName: string;
     userMobile: string;
-    loginType: string;
+    registerType: string;
     userPwd: string;
     showPwd: boolean;
     captchaCodeImg: string;
@@ -22,16 +20,14 @@ export class LoginPage implements OnInit {
 
     constructor(
         private location: Location,
-        private appService: AppService,
-        private dataService: DataService,
-        private localStorage: LocalStorageService) {
+        private dataService: DataService) {
     }
 
     ngOnInit() {
         this.userName = '';
         this.userMobile = '';
         this.userPwd = '';
-        this.loginType = 't-userName';
+        this.registerType = 't-userName';
         this.showPwd = false;
         this.getCaptcha();
     }
@@ -46,18 +42,18 @@ export class LoginPage implements OnInit {
         });
     }
 
-    logIn() {
-        if (this.loginType === 't-userName') {
+    register() {
+        if (this.registerType === 't-userName') {
             if (!this.userName) {
                 this.dataService.toastTip('请填写用户名');
                 return;
             }
-            if (!this.userPwd) {
-                this.dataService.toastTip('请填写密码');
-                return;
-            }
         }
-        if (this.loginType === 't-mobile') {
+        if (!this.userPwd) {
+            this.dataService.toastTip('请填写密码');
+            return;
+        }
+        if (this.registerType === 't-mobile') {
             if (!this.userMobile) {
                 this.dataService.toastTip('请填写手机号');
                 return;
@@ -71,13 +67,16 @@ export class LoginPage implements OnInit {
             this.dataService.toastTip('请填写验证码');
             return;
         }
-        this.dataService.accountLogin(this.userName, this.userPwd, this.codeNumber).subscribe(res => {
+        this.dataService.postDataNotLogin('users', {
+            'userName': this.userName,
+            'password': this.userPwd,
+            'captcha': this.codeNumber
+        }).subscribe(res => {
             if (res.code !== '0') {
                 this.getCaptcha();
                 this.dataService.toastTip(res.message);
             } else {
-                this.localStorage.setStore('authorization', res.data);
-                this.appService.userInfoEvent.emit('update');
+                this.dataService.toastTip('注册成功!');
                 this.location.back();
             }
         });
