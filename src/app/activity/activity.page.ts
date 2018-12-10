@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-activity',
-  templateUrl: './activity.page.html',
-  styleUrls: ['./activity.page.scss'],
+    selector: 'app-activity',
+    templateUrl: './activity.page.html',
+    styleUrls: ['./activity.page.scss'],
 })
 export class ActivityPage implements OnInit {
 
-  constructor() { }
+    slideOpts = {
+        effect: 'flip',
+        autoplay: true
+    };
 
-  ngOnInit() {
-  }
+    constructor(private router: Router) {
+    }
 
+    ngOnInit() {
+    }
 }
