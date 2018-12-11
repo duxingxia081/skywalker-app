@@ -18,4 +18,8 @@ export class ActivityPage implements OnInit {
 
     ngOnInit() {
     }
+
+    goList() {
+        this.router.navigateByUrl('/activity/activityList');
+    }
 }
