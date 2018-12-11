@@ -11,12 +11,13 @@ import {ActivityListComponent} from './activity-list/activity-list.component';
 const routes: Routes = [
     {
         path: '',
-        component: ActivityPage
-    },
-    {
-        path: 'activity-list',
-        component: ActivityListComponent,
-        outlet: 'activityList'
+        component: ActivityPage,
+        children: [
+            {
+                path: 'activityList',
+                component: ActivityListComponent
+            }
+        ]
     }
 ];
 

@@ -15,16 +15,16 @@
 <ion-content padding>
     <ion-grid>
         <ion-row>
-            <ion-col [routerLink]="['/activity/activity-list']">
+            <ion-col (click)="goList()">
                 <ion-label>最新推荐</ion-label>
             </ion-col>
-            <ion-col>
+            <ion-col [routerLink]="['/activity/activityList']">
                 <ion-label>自驾游</ion-label>
             </ion-col>
-            <ion-col>
+            <ion-col [routerLink]="['/activity/activityList']">
                 <ion-label>亲子游</ion-label>
             </ion-col>
-            <ion-col>
+            <ion-col [routerLink]="['/activity/activityList']">
                 <ion-label>户外约伴</ion-label>
             </ion-col>
             <ion-col [size]="1">
@@ -32,6 +32,5 @@
             </ion-col>
         </ion-row>
     </ion-grid>
-    <ion-button [routerLink]="['/activity',{outlets:{activityList: 'activity-list'}}]">casfdsf</ion-button>
-    <ion-router-outlet name="activityList"></ion-router-outlet>
+    <router-outlet></router-outlet>
 </ion-content>
