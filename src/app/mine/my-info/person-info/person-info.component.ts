@@ -20,7 +20,15 @@ export class PersonInfoComponent implements OnInit {
     imgBaseUrl: string = ImgBaseUrl + 'default.jpg';
     upload: any = {
         url: BaseUrl + 'users/headImg', // 接收图片的url
-        params: {}
+        params: {},
+        success: (data) => {
+            if (data.code === '0') {
+                this.getHeadImg();
+            }
+            else {
+                this.dataService.toastTip(data.message);
+            }
+        } // 图片上传成功后的回调
     };
 
     constructor(private dataService: DataService,
@@ -49,7 +57,7 @@ export class PersonInfoComponent implements OnInit {
         this.dataService.getData('users/headImg').subscribe(
             res => {
                 if (null != res && res.code === '0' && res.data != null) {
-                    this.imgBaseUrl = res;
+                    this.imgBaseUrl = 'data:image/jpg;base64,' + res.data;
                 }
             }
         );
@@ -132,7 +140,6 @@ export class PersonInfoComponent implements OnInit {
         });
 
         await actionSheet.present().then(value => {
-            console.log(value);
             return value;
         });
     }

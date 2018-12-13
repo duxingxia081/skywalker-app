@@ -4,12 +4,12 @@ import {ToastController} from '@ionic/angular';
 import {LocalStorageService} from './local-storage.service';
 import {of} from 'rxjs';
 import {FileTransfer, FileTransferObject, FileUploadOptions} from '@ionic-native/file-transfer/ngx';
+import {BaseUrl} from '../config/env';
 
 @Injectable({
     providedIn: 'root'
 })
 export class DataService {
-    private readonly serverUrl = 'http://192.168.0.133:9999/';
     private headers: HttpHeaders;
 
     constructor(private http: HttpClient,
@@ -18,26 +18,25 @@ export class DataService {
     }
 
     getCaptcha(): any {
-        return this.http.get(this.serverUrl + 'captcha', {withCredentials: true});
+        return this.http.get(BaseUrl + 'captcha', {withCredentials: true});
     }
 
     accountLogin(userName: string, password: string, captcha: string): any {
-        return this.http.post(this.serverUrl + 'auth', {userName, password, captcha}, {withCredentials: true});
+        return this.http.post(BaseUrl + 'auth', {userName, password, captcha}, {withCredentials: true});
     }
 
     getUserInfo(authorization): any {
         this.headers = new HttpHeaders().set('authorization', 'Bearer:' + authorization);
-        return this.http.get(this.serverUrl + 'users/myinfo', {headers: this.headers});
+        return this.http.get(BaseUrl + 'users/myinfo', {headers: this.headers});
     }
 
     updateUserInfo(userInfo): any {
-        console.log(userInfo + userInfo.sex);
         const authorization = this.localStorageService.getStore('authorization');
         if (!authorization) {
             this.toastTip('请登陆后修改信息');
         }
         this.headers = new HttpHeaders().set('authorization', 'Bearer:' + authorization);
-        return this.http.put(this.serverUrl + 'users', userInfo, {headers: this.headers});
+        return this.http.put(BaseUrl + 'users', userInfo, {headers: this.headers});
     }
 
     async toastTip(message: string) {
@@ -55,7 +54,7 @@ export class DataService {
             this.toastTip('请登陆后修改信息');
         }
         this.headers = new HttpHeaders().set('authorization', 'Bearer:' + authorization);
-        return this.http.get(this.serverUrl + 'qrCode', {headers: this.headers});
+        return this.http.get(BaseUrl + 'qrCode', {headers: this.headers});
     }
 
     getData(uri): any {
@@ -64,11 +63,11 @@ export class DataService {
             return of(null);
         }
         this.headers = new HttpHeaders().set('authorization', 'Bearer:' + authorization);
-        return this.http.get(this.serverUrl + uri, {headers: this.headers});
+        return this.http.get(BaseUrl + uri, {headers: this.headers});
     }
 
     postDataNotLogin(uri, data): any {
-        return this.http.post(this.serverUrl + uri, data, {withCredentials: true});
+        return this.http.post(BaseUrl + uri, data, {withCredentials: true});
     }
 
     /**
@@ -95,7 +94,9 @@ export class DataService {
         };
         fileTransfer.upload(path, upload.url, options)
             .then((data) => {
-                this.toastTip(JSON.parse(data.response));
+                if (upload.success) {
+                    upload.success(JSON.parse(data.response));
+                }
             }, (err) => {
                 if (upload.error) {
                     this.toastTip('上传出错');
