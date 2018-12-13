@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ImgBaseUrl} from '../../../config/env';
+import {BaseUrl, ImgBaseUrl} from '../../../config/env';
 import {ModifyUserComponent} from './modify-user/modify-user.component';
 import {DataService} from '../../../service/data.service';
 import {ActionSheetController, ModalController} from '@ionic/angular';
@@ -7,26 +7,28 @@ import {ActionSheetController, ModalController} from '@ionic/angular';
 import {Camera, CameraOptions} from '@ionic-native/camera/ngx';
 import {ImagePicker, ImagePickerOptions} from '@ionic-native/image-picker/ngx';
 import {Crop} from '@ionic-native/crop/ngx';
-import {Base64} from '@ionic-native/base64/ngx';
 
 @Component({
     selector: 'app-person-info',
     templateUrl: './person-info.component.html',
-    providers: [ImagePicker, Crop, Camera, Base64],
+    providers: [ImagePicker, Crop, Camera],
     styleUrls: ['./person-info.component.scss']
 })
 export class PersonInfoComponent implements OnInit {
     @Input() userInfo: any;
     qrCode: string;
     imgBaseUrl: string = ImgBaseUrl + 'default.jpg';
+    upload: any = {
+        url: BaseUrl + 'users/headImg', // 接收图片的url
+        params: {}
+    };
 
     constructor(private dataService: DataService,
                 private imagePicker: ImagePicker,
                 private modalController: ModalController,
                 private actionSheetCtrl: ActionSheetController,
                 private camera: Camera,
-                private crop: Crop,
-                private base64: Base64) {
+                private crop: Crop) {
     }
 
 
@@ -41,22 +43,6 @@ export class PersonInfoComponent implements OnInit {
             componentProps: {key: key, title: title, userInfo: this.userInfo}
         });
         return await modal.present();
-    }
-
-    modifyImage(img) {
-        console.log(img);
-        this.base64.encodeFile(img).then((base64File: string) => {
-            console.log('base64File:' + base64File);
-            /*this.imgBaseUrl = 'data:image/jpg;base64,' + base64File;
-            this.userInfo.headImage = 'data:image/jpg;base64,' + base64File;
-            this.dataService.updateUserInfo(this.userInfo).subscribe(res => {
-                if (res.code !== '0') {
-                    this.dataService.toastTip(res.message);
-                }
-            });*/
-        }, (err) => {
-            console.log(err);
-        });
     }
 
     getHeadImg() {
@@ -88,20 +74,18 @@ export class PersonInfoComponent implements OnInit {
         };
         this.imagePicker.getPictures(options)
             .then((results) => {
-                const s = this.reduceImages(results);
-                console.log(s);
+                this.reduceImages(results);
             }, (err) => {
-                console.log(err);
+                console.log('openImagePicker' + err);
             });
     }
 
     reduceImages(selectedImg: any): any {
         return selectedImg.reduce((promise: any, item: any) => {
             return promise.then((result) => {
-                return this.crop.crop(item, {quality: 75, targetHeight: 200, targetWidth: 200})
+                return this.crop.crop(item, {quality: 75, targetHeight: 72, targetWidth: 72})
                     .then(newImage => {
-                        console.log('all images cropped2' + newImage);
-                        this.modifyImage(newImage);
+                        this.dataService.uploadImg(newImage, this.upload);
                     });
             });
         }, Promise.resolve());
@@ -114,9 +98,9 @@ export class PersonInfoComponent implements OnInit {
             destinationType: 1
         };
         this.camera.getPicture(options).then((data) => {
-            this.crop.crop(data, {quality: 75, targetHeight: 200, targetWidth: 200}).then(
+            this.crop.crop(data, {quality: 75, targetHeight: 72, targetWidth: 72}).then(
                 (newImage) => {
-                    this.modifyImage(newImage);
+                    this.dataService.uploadImg(newImage, this.upload);
                 },
                 error => console.error('Error cropping image', error));
         }, function (error) {
