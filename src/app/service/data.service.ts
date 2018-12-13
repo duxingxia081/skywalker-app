@@ -13,8 +13,7 @@ export class DataService {
     private headers: HttpHeaders;
 
     constructor(private http: HttpClient,
-                private toastCtrl: ToastController,
-                private localStorageService: LocalStorageService) {
+                private toastCtrl: ToastController) {
     }
 
     getCaptcha(): any {
