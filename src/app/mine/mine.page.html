@@ -11,7 +11,7 @@
         <ion-row *ngIf="!userInfo" [routerLink]="['/login']">
             <ion-col [size]="3">
                 <ion-avatar>
-                    <ion-img [src]="imgBaseUrl + 'default.jpg'" class="privateImage"></ion-img>
+                    <ion-img [src]="imgBaseUrl" class="privateImage"></ion-img>
                 </ion-avatar>
             </ion-col>
             <ion-col align-self-start>
@@ -24,7 +24,7 @@
         <ion-row *ngIf="userInfo" [routerLink]="['/mine/my-info']">
             <ion-col [size]="3">
                 <ion-avatar>
-                    <ion-img [src]="imgBaseUrl + 'default.jpg'" class="privateImage"></ion-img>
+                    <ion-img [src]="imgBaseUrl" class="privateImage"></ion-img>
                 </ion-avatar>
             </ion-col>
             <ion-col align-self-start>

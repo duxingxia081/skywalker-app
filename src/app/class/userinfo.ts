@@ -7,7 +7,6 @@ export class UserInfo {
     public userInfo: any;
 
     constructor(protected dataService: DataService,
-                protected localStorageService: LocalStorageService,
                 protected router: Router) {
         this.getAuthorization();
         this.getUserInfo();
@@ -15,14 +14,12 @@ export class UserInfo {
     }
 
     private getAuthorization() {
-        this.authorization = this.localStorageService.getStore('authorization');
+        this.authorization = this.dataService.getStore('authorization');
     }
 
     private getUserInfo() {
         if (this.authorization) {
-            this.dataService.getUserInfo(this.authorization).subscribe(res => {
-                this.userInfo = res.data;
-            });
+            this.userInfo = this.dataService.getStore('userInfo');
         }
         else {
             this.router.navigate(['/login']);
