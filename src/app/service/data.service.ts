@@ -25,15 +25,34 @@ export class DataService {
         return this.http.post(BaseUrl + 'auth', {userName, password, captcha}, {withCredentials: true});
     }
 
-    getUserInfo(authorization): any {
+    getDataLogin(uri): any {
+        const authorization = this.getStore('authorization');
+        if (!authorization) {
+            this.toastTip('请登陆后修改信息');
+            return;
+        }
         this.headers = new HttpHeaders().set('authorization', 'Bearer:' + authorization);
-        return this.http.get(BaseUrl + 'users/myinfo', {headers: this.headers});
+        return this.http.get(BaseUrl + uri, {headers: this.headers});
+    }
+
+    getData(uri): any {
+        const authorization = this.getStore('authorization');
+        if (!authorization) {
+            return of(null);
+        }
+        this.headers = new HttpHeaders().set('authorization', 'Bearer:' + authorization);
+        return this.http.get(BaseUrl + uri, {headers: this.headers});
+    }
+
+    postDataNotLogin(uri, data): any {
+        return this.http.post(BaseUrl + uri, data, {withCredentials: true});
     }
 
     updateUserInfo(userInfo): any {
-        const authorization = this.localStorageService.getStore('authorization');
+        const authorization = this.getStore('authorization');
         if (!authorization) {
             this.toastTip('请登陆后修改信息');
+            return;
         }
         this.headers = new HttpHeaders().set('authorization', 'Bearer:' + authorization);
         return this.http.put(BaseUrl + 'users', userInfo, {headers: this.headers});
@@ -49,25 +68,12 @@ export class DataService {
     }
 
     getQrCode(): any {
-        const authorization = this.localStorageService.getStore('authorization');
+        const authorization = this.getStore('authorization');
         if (!authorization) {
             this.toastTip('请登陆后修改信息');
         }
         this.headers = new HttpHeaders().set('authorization', 'Bearer:' + authorization);
         return this.http.get(BaseUrl + 'qrCode', {headers: this.headers});
-    }
-
-    getData(uri): any {
-        const authorization = this.localStorageService.getStore('authorization');
-        if (!authorization) {
-            return of(null);
-        }
-        this.headers = new HttpHeaders().set('authorization', 'Bearer:' + authorization);
-        return this.http.get(BaseUrl + uri, {headers: this.headers});
-    }
-
-    postDataNotLogin(uri, data): any {
-        return this.http.post(BaseUrl + uri, data, {withCredentials: true});
     }
 
     /**
@@ -79,7 +85,7 @@ export class DataService {
         if (!path) {
             return;
         }
-        const authorization = this.localStorageService.getStore('authorization');
+        const authorization = this.getStore('authorization');
         if (!authorization) {
             return of(null);
         }
@@ -103,5 +109,29 @@ export class DataService {
                 }
             });
 
+    }
+
+    getStore(name: string) {
+        if (!name) {
+            return;
+        }
+        return localStorage.getItem(name);
+    }
+
+    setStore(name: string, content: any) {
+        if (!name) {
+            return;
+        }
+        if (typeof content !== 'string') {
+            content = JSON.stringify(content);
+        }
+        localStorage.setItem(name, content);
+    }
+
+    removeStore(name: string) {
+        if (!name) {
+            return;
+        }
+        localStorage.removeItem(name);
     }
 }

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {BaseUrl, ImgBaseUrl} from '../../../config/env';
+import {BaseUrl} from '../../../config/env';
 import {ModifyUserComponent} from './modify-user/modify-user.component';
 import {DataService} from '../../../service/data.service';
 import {ActionSheetController, ModalController} from '@ionic/angular';
@@ -17,13 +17,13 @@ import {Crop} from '@ionic-native/crop/ngx';
 export class PersonInfoComponent implements OnInit {
     @Input() userInfo: any;
     qrCode: string;
-    imgBaseUrl: string = ImgBaseUrl + 'default.jpg';
+    imgBaseUrl: string;
     upload: any = {
         url: BaseUrl + 'users/headImg', // 接收图片的url
         params: {},
         success: (data) => {
             if (data.code === '0') {
-                this.getHeadImg();
+                this.dataService.getStore('headImg');
             }
             else {
                 this.dataService.toastTip(data.message);
@@ -57,6 +57,7 @@ export class PersonInfoComponent implements OnInit {
         this.dataService.getData('users/headImg').subscribe(
             res => {
                 if (null != res && res.code === '0' && res.data != null) {
+                    this.dataService.setStore('headImg', 'data:image/jpg;base64,' + res.data);
                     this.imgBaseUrl = 'data:image/jpg;base64,' + res.data;
                 }
             }

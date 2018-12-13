@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DataService} from '../../../../service/data.service';
 import {ModalController} from '@ionic/angular';
-import {LocalStorageService} from '../../../../service/local-storage.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -17,7 +16,6 @@ export class ModifyUserComponent implements OnInit {
 
     constructor(private dataService: DataService,
                 private modalController: ModalController,
-                private localStorageService: LocalStorageService,
                 private router: Router) {
     }
 
@@ -26,17 +24,17 @@ export class ModifyUserComponent implements OnInit {
 
     modify() {
         this.dataService.updateUserInfo(this.userInfo).subscribe(res => {
-            console.log(res.code + res.data + 'massage:' + res.message);
             if (res.code !== '0') {
                 this.dataService.toastTip(res.message);
                 return;
             }
             if (this.key === '6') {
-                this.localStorageService.removeStore('authorization');
+                this.dataService.removeStore('authorization');
                 this.modalController.dismiss();
                 this.router.navigate(['/login']);
                 return;
             }
+            this.dataService.setStore('userInfo', this.userInfo);
             this.modalController.dismiss();
         });
     }

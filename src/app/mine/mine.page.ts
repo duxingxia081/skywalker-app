@@ -1,7 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {ImgBaseUrl} from '../config/env';
-import {LocalStorageService} from '../service/local-storage.service';
-import {UserInfo} from '../class';
 import {DataService} from '../service/data.service';
 
 @Component({
@@ -10,28 +7,16 @@ import {DataService} from '../service/data.service';
     styleUrls: ['mine.page.scss']
 })
 export class MinePage implements OnInit {
-    private imgBaseUrl: string = ImgBaseUrl;
-    private authorization: string;
+    private imgBaseUrl: string;
     private userInfo: any;
 
-    constructor(protected localStorageService: LocalStorageService,
-                protected dataService: DataService) {
+    constructor(protected dataService: DataService) {
     }
 
     ngOnInit(): void {
-        this.getAuthorization();
-        this.getUserInfo();
-    }
-
-    private getAuthorization() {
-        this.authorization = this.localStorageService.getStore('authorization');
-    }
-
-    private getUserInfo() {
-        if (this.authorization) {
-            this.dataService.getUserInfo(this.authorization).subscribe(res => {
-                this.userInfo = res.data;
-            });
-        }
+        this.userInfo = this.dataService.getStore('userInfo');
+        this.imgBaseUrl = this.dataService.getStore('headImg');
+        console.log(this.dataService.getStore('headImg'));
+        console.log(this.dataService.getStore('userInfo'));
     }
 }

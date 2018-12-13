@@ -23,8 +23,7 @@ export class LoginPage implements OnInit {
     constructor(
         private location: Location,
         private appService: AppService,
-        private dataService: DataService,
-        private localStorage: LocalStorageService) {
+        private dataService: DataService) {
     }
 
     ngOnInit() {
@@ -76,10 +75,27 @@ export class LoginPage implements OnInit {
                 this.getCaptcha();
                 this.dataService.toastTip(res.message);
             } else {
-                this.localStorage.setStore('authorization', res.data);
-                this.appService.userInfoEvent.emit('update');
+                this.dataService.setStore('authorization', res.data);
+                this.getHeadImg();
+                this.getUserInfo();
                 this.location.back();
             }
+        });
+    }
+
+    getHeadImg() {
+        this.dataService.getData('users/headImg').subscribe(
+            res => {
+                if (null != res && res.code === '0' && res.data != null) {
+                    this.dataService.setStore('headImg', 'data:image/jpg;base64,' + res.data);
+                }
+            }
+        );
+    }
+
+    getUserInfo() {
+        this.dataService.getDataLogin('users/myinfo').subscribe(res => {
+            this.dataService.setStore('userInfo', res.data);
         });
     }
 }

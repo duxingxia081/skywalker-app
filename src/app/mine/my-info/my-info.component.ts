@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {UserInfo} from '../../class';
-import {LocalStorageService} from '../../service/local-storage.service';
 import {DataService} from '../../service/data.service';
 import {Router} from '@angular/router';
 
@@ -13,9 +12,8 @@ export class MyInfoComponent extends UserInfo implements OnInit {
     type = 'personInfo';
 
     constructor(protected dataService: DataService,
-                protected localStorageService: LocalStorageService,
                 protected router: Router) {
-        super(dataService, localStorageService, router);
+        super(dataService, router);
     }
 
     ngOnInit(): void {
