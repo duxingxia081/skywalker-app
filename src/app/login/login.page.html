@@ -3,7 +3,7 @@
 </ion-header>
 
 <ion-content padding>
-    <ngForm #form="ngForm">
+    <ng-form #form="ngForm">
         <ion-item>
             <ion-select interface="popover" style="margin-left: -16px" [(ngModel)]="loginType" name="loginType">
                 <ion-select-option value="t-userName" selected="true">用户名</ion-select-option>
@@ -40,6 +40,6 @@
                 </ion-col>
             </ion-row>
         </ion-grid>
-    </ngForm>
+    </ng-form>
 
 </ion-content>

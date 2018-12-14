@@ -1,22 +1,20 @@
 import {DataService} from '../service/data.service';
-import {Router} from '@angular/router';
 
 export class UserInfo {
     public authorization: string;
     public userInfo: any;
-    public imgBaseUrl: string;
+    public imgBaseUrl = '/assets/imgs/defaultHead.png';
 
-    constructor(protected dataService: DataService,
-                protected router: Router) {
+    constructor(protected dataService: DataService) {
         this.getAuthorization();
         this.getUserInfo();
     }
 
-    private getAuthorization() {
+    getAuthorization() {
         this.authorization = this.dataService.getStore('authorization');
     }
 
-    private getUserInfo() {
+    getUserInfo() {
         if (this.authorization) {
             this.userInfo = JSON.parse(this.dataService.getStore('userInfo'));
             this.imgBaseUrl = this.dataService.getStore('headImg');

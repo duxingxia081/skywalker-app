@@ -88,6 +88,7 @@ export class LoginPage implements OnInit {
             res => {
                 if (null != res && res.code === '0' && res.data != null) {
                     this.dataService.setStore('headImg', 'data:image/jpg;base64,' + res.data);
+                    this.appService.userInfoEvent.emit('update');
                 }
             }
         );
@@ -96,6 +97,7 @@ export class LoginPage implements OnInit {
     getUserInfo() {
         this.dataService.getDataLogin('users/myinfo').subscribe(res => {
             this.dataService.setStore('userInfo', res.data);
+            this.appService.userInfoEvent.emit('update');
         });
     }
 }
