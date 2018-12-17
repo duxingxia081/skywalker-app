@@ -21,7 +21,7 @@
                 <ion-icon src="/assets/icon/ios-arrow-forward.svg"></ion-icon>
             </ion-col>
         </ion-row>
-        <ion-row *ngIf="userInfo" [routerLink]="['/mine/my-info']">
+        <ion-row *ngIf="userInfo" [routerLink]="['./myInfo']">
             <ion-col [size]="3">
                 <ion-avatar>
                     <ion-img [src]="imgBaseUrl" class="privateImage"></ion-img>
@@ -66,10 +66,9 @@
             <ion-label>我的朋友</ion-label>
             <ion-icon mode="ios" name="arrow-forward" slot="end"></ion-icon>
         </ion-item>
-        <ion-item>
+        <ion-item [routerLink]="['./myActivity']">
             <ion-label>我的活动</ion-label>
             <ion-badge color="danger">66</ion-badge>
-            <ion-icon mode="ios" name="arrow-forward" slot="end"></ion-icon>
         </ion-item>
         <ion-item>
             <ion-label>我的分享</ion-label>

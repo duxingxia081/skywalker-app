@@ -1,0 +1,54 @@
+<ion-header>
+    <back-header wTitle="我的活动"></back-header>
+</ion-header>
+
+<ion-content padding>
+    <ion-segment>
+        <ion-segment-button checked (ionSelect)="changeType('00')">
+            <ion-label>我发布的活动</ion-label>
+        </ion-segment-button>
+        <ion-segment-button (ionSelect)="changeType('01')">
+            <ion-label>我参与的活动</ion-label>
+        </ion-segment-button>
+    </ion-segment>
+    <ion-card>
+        <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
+        <ion-card-header>
+            <ion-buttons>
+                <ion-icon name="pin" slot="start"></ion-icon>
+                <ion-card-subtitle>丽江 大理 泸沽湖</ion-card-subtitle>
+            </ion-buttons>
+            <ion-buttons>
+                <ion-icon name="calendar" slot="start"></ion-icon>
+                <ion-card-subtitle>于2-20出发,约7天行程</ion-card-subtitle>
+            </ion-buttons>
+            <ion-item-divider>
+            </ion-item-divider>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-chip>
+                <ion-avatar>
+                    <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
+                </ion-avatar>
+                <ion-avatar>
+                    <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
+                </ion-avatar>
+                <ion-avatar>
+                    <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
+                </ion-avatar>
+                <ion-avatar>
+                    <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
+                </ion-avatar>
+                <ion-avatar>
+                    <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
+                </ion-avatar>
+                <ion-avatar>
+                    <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
+                </ion-avatar>
+                <ion-avatar>
+                    <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
+                </ion-avatar>
+            </ion-chip>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

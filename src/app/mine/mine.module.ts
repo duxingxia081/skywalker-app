@@ -8,8 +8,6 @@ import {PasswordInfoComponent} from './my-info/password-info/password-info.compo
 import {SafeInfoComponent} from './my-info/safe-info/safe-info.component';
 import {OtherInfoComponent} from './my-info/other-info/other-info.component';
 import {ModifyUserComponent} from './my-info/person-info/modify-user/modify-user.component';
-import {ActivityPage} from '../activity/activity.page';
-import {ActivityListComponent} from '../activity/activity-list/activity-list.component';
 import {AuthGuard} from '../auth/auth.guard';
 
 const routes: Routes = [
@@ -18,7 +16,8 @@ const routes: Routes = [
         canActivateChild: [AuthGuard],
         children: [
             {path: '', component: MinePage},
-            {path: 'my-info', component: MyInfoComponent}
+            {path: 'myInfo', component: MyInfoComponent},
+            {path: 'myActivity', loadChildren: './my-activity/my-activity.module#MyActivityPageModule'}
         ]
     }
 ];

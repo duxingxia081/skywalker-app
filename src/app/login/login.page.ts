@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {DataService} from '../service/data.service';
-import {LocalStorageService} from '../service/local-storage.service';
 import {AppService} from '../service/app.service';
 
 @Component({
