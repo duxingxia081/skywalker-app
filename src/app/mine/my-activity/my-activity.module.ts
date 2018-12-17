@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 
 import {MyActivityPage} from './my-activity.page';
 import {SharedModule} from '../../shared/shared.module';
+import {ModifyMyActivityComponent} from './modify-my-activity/modify-my-activity.component';
 
 const routes: Routes = [
     {
@@ -15,7 +16,10 @@ const routes: Routes = [
         SharedModule,
         RouterModule.forChild(routes)
     ],
-    declarations: [MyActivityPage]
+    declarations: [MyActivityPage, ModifyMyActivityComponent],
+    entryComponents: [
+        ModifyMyActivityComponent
+    ]
 })
 export class MyActivityPageModule {
 }
