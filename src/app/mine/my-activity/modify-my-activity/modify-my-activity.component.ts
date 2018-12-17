@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from '../../../service/data.service';
+import {Activity} from '../../../entity/activity';
+import {ModalController} from '@ionic/angular';
 
 @Component({
     selector: 'app-modify-my-activity',
@@ -9,9 +11,11 @@ import {DataService} from '../../../service/data.service';
 export class ModifyMyActivityComponent implements OnInit {
 
     activityTypes: any;
-    activity: any;
+    activity: Activity;
 
-    constructor(private dataService: DataService) {
+    constructor(private dataService: DataService,
+                private modalController: ModalController) {
+        this.activity = new Activity();
     }
 
     ngOnInit() {
@@ -28,5 +32,43 @@ export class ModifyMyActivityComponent implements OnInit {
                 }
             }
         );
+    }
+
+    modify() {
+        if (!this.activity.activeTitle) {
+            this.dataService.toastTip('请填写活动标题');
+            return;
+        }
+        if (!this.activity.typeId) {
+            this.dataService.toastTip('请选择活动类型');
+            return;
+        }
+        if (!this.activity.startAddressName) {
+            this.dataService.toastTip('请填写出发地');
+            return;
+        }
+        if (!this.activity.endAddressName) {
+            this.dataService.toastTip('请填写目的地');
+            return;
+        }
+        if (!this.activity.goTimeStr) {
+            this.dataService.toastTip('请选择出发时间');
+            return;
+        }
+        if (!this.activity.days) {
+            this.dataService.toastTip('请填写活动耗时');
+            return;
+        }
+        if (!this.activity.charge) {
+            this.dataService.toastTip('请填写费用');
+            return;
+        }
+        this.dataService.postData('activity', this.activity).subscribe(res => {
+            if (res.code !== '0') {
+                this.dataService.toastTip(res.message);
+            } else {
+                this.modalController.dismiss();
+            }
+        });
     }
 }

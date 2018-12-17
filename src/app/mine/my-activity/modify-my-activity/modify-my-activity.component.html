@@ -6,34 +6,45 @@
         <ion-list>
             <ion-item>
                 <ion-label position="floating">活动标题</ion-label>
-                <ion-input[(ngModel)]="activity.activeTitle"  checked required="true" maxlength="30" minlength="5" name="activeTitle"></ion-input>
+                <ion-input [(ngModel)]="activity.activeTitle" required="true" maxlength="30" minlength="5"
+                           name="activeTitle"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label position="floating">活动类型</ion-label>
-                <ion-select cancelText="取消" okText="确定" name="typeId">
+                <ion-select [(ngModel)]="activity.typeId" cancelText="取消" okText="确定" name="typeId">
                     <ion-select-option *ngFor="let type of activityTypes" value="{{type?.typeId}}">{{type?.typeName}}
                     </ion-select-option>
                 </ion-select>
             </ion-item>
             <ion-item>
                 <ion-label position="floating">出发地</ion-label>
-                <ion-input checked required="true" maxlength="30" minlength="5" name="startAddressName"></ion-input>
+                <ion-input [(ngModel)]="activity.startAddressName" required="true" maxlength="30" minlength="5"
+                           name="startAddressName"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label position="floating">目的地</ion-label>
-                <ion-input checked required="true" maxlength="30" minlength="5" name="endAddressName"></ion-input>
+                <ion-input [(ngModel)]="activity.endAddressName" required="true" maxlength="30" minlength="5"
+                           name="endAddressName"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label position="floating">出发时间</ion-label>
-                <ion-datetime display-format="YYYY-MM-DD HH:mm" name="goTimeStr"></ion-datetime>
+                <ion-datetime [(ngModel)]="activity.goTimeStr" display-format="YYYY-MM-DD HH:mm"
+                              name="goTimeStr"></ion-datetime>
             </ion-item>
             <ion-item>
-                <ion-label position="floating">费用</ion-label>
-                <ion-input checked type="number" required="true" maxlength="4" minlength="1" name="charge"></ion-input>
+                <ion-label position="floating">活动耗时(天)</ion-label>
+                <ion-input [(ngModel)]="activity.days" type="number" required="true" max="1000" min="1"
+                           name="days"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">费用(元)</ion-label>
+                <ion-input [(ngModel)]="activity.charge" type="number" required="true" max="10000" min="0"
+                           name="charge"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label position="floating">活动描述</ion-label>
-                <ion-textarea checked required maxlength="300" minlength="5" rows="5" name="content"></ion-textarea>
+                <ion-textarea [(ngModel)]="activity.content" required maxlength="300" minlength="5" rows="5"
+                              name="content"></ion-textarea>
             </ion-item>
         </ion-list>
         <ion-button expand="full" color="success" (click)="modify()">立即发布</ion-button>

@@ -11,6 +11,7 @@ import {BaseUrl} from '../config/env';
 })
 export class DataService {
     private headers: HttpHeaders;
+    private authorization: string;
 
     constructor(private http: HttpClient,
                 private toastCtrl: ToastController) {
@@ -25,26 +26,33 @@ export class DataService {
     }
 
     getDataLogin(uri): any {
-        const authorization = this.getStore('authorization');
-        if (!authorization) {
-            this.toastTip('请登陆后修改信息');
-            return;
-        }
-        this.headers = new HttpHeaders().set('authorization', 'Bearer:' + authorization);
+        this.setHead();
         return this.http.get(BaseUrl + uri, {headers: this.headers});
     }
 
     getData(uri): any {
-        const authorization = this.getStore('authorization');
-        if (!authorization) {
-            return of(null);
-        }
-        this.headers = new HttpHeaders().set('authorization', 'Bearer:' + authorization);
+        this.setHead();
         return this.http.get(BaseUrl + uri, {headers: this.headers});
     }
 
     postDataNotLogin(uri, data): any {
         return this.http.post(BaseUrl + uri, data, {withCredentials: true});
+    }
+
+    postData(uri, data): any {
+        this.setHead();
+        return this.http.post(BaseUrl + uri, data, {headers: this.headers});
+    }
+
+    private setHead() {
+        if (this.authorization) {
+            return;
+        }
+        this.authorization = this.getStore('authorization');
+        if (!this.authorization) {
+            return of(null);
+        }
+        this.headers = new HttpHeaders().set('authorization', 'Bearer:' + this.authorization);
     }
 
     updateUserInfo(userInfo): any {
