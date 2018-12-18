@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ToastController} from '@ionic/angular';
-import {LocalStorageService} from './local-storage.service';
 import {of} from 'rxjs';
 import {FileTransfer, FileTransferObject, FileUploadOptions} from '@ionic-native/file-transfer/ngx';
 import {BaseUrl} from '../config/env';
@@ -25,14 +24,14 @@ export class DataService {
         return this.http.post(BaseUrl + 'auth', {userName, password, captcha}, {withCredentials: true});
     }
 
-    getDataLogin(uri): any {
+    getData(uri): any {
         this.setHead();
         return this.http.get(BaseUrl + uri, {headers: this.headers});
     }
 
-    getData(uri): any {
+    getDataWithParam(uri, params): any {
         this.setHead();
-        return this.http.get(BaseUrl + uri, {headers: this.headers});
+        return this.http.get(BaseUrl + uri, {headers: this.headers, params: params});
     }
 
     postDataNotLogin(uri, data): any {

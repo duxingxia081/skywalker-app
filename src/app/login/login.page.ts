@@ -94,7 +94,7 @@ export class LoginPage implements OnInit {
     }
 
     getUserInfo() {
-        this.dataService.getDataLogin('users/myinfo').subscribe(res => {
+        this.dataService.getData('users/myinfo').subscribe(res => {
             if (null != res && res.code === '0' && res.data != null) {
                 this.dataService.setStore('userInfo', res.data);
                 this.appService.userInfoEvent.emit('update');
