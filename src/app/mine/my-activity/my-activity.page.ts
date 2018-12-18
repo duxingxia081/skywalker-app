@@ -45,7 +45,7 @@ export class MyActivityPage implements OnInit {
         const params = {
             'time': 1449849600000
         };
-        this.dataService.getDataWithParam('activity', params).subscribe(
+        this.dataService.getData('activity', params).subscribe(
             res => {
                 if (null != res && res.code === '0' && res.data != null) {
                     this.listActivity = res.data;

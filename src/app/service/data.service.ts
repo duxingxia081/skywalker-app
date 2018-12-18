@@ -24,12 +24,7 @@ export class DataService {
         return this.http.post(BaseUrl + 'auth', {userName, password, captcha}, {withCredentials: true});
     }
 
-    getData(uri): any {
-        this.setHead();
-        return this.http.get(BaseUrl + uri, {headers: this.headers});
-    }
-
-    getDataWithParam(uri, params): any {
+    getData(uri, params?): any {
         this.setHead();
         return this.http.get(BaseUrl + uri, {headers: this.headers, params: params});
     }
