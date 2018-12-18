@@ -10,7 +10,8 @@ import {ModifyMyActivityComponent} from './modify-my-activity/modify-my-activity
 })
 export class MyActivityPage implements OnInit {
 
-    listActivity: any;
+    listActivity: Array<any>;
+    time = new Date().getTime();
 
     constructor(private dataService: DataService,
                 private modalController: ModalController) {
@@ -29,28 +30,37 @@ export class MyActivityPage implements OnInit {
     }
 
     loadData(event) {
-        setTimeout(() => {
-            console.log('Done');
-            event.target.complete();
-
-            // App logic to determine if all data is loaded
-            // and disable the infinite scroll
-            /*if (data.length === 1000) {
-                event.target.disabled = true;
-            }*/
-        }, 5000);
+        this.getActivities(event);
     }
 
-    getActivities() {
+    getActivities(event?) {
         const params = {
-            'time': 1449849600000
+            'time': this.time
         };
         this.dataService.getData('activity', params).subscribe(
             res => {
                 if (null != res && res.code === '0' && res.data != null) {
-                    this.listActivity = res.data;
+                    if (event) {
+                        const newData: Array<any> = res.data.list;
+                        this.listActivity = this.listActivity.concat(newData);
+                        event.target.complete();
+                    }
+                    else {
+                        this.listActivity = res.data.list;
+                    }
+                    this.getLastTime();
+                    console.log(this.listActivity.length);
+                    console.log(this.listActivity);
                 }
             }
         );
+    }
+
+    getLastTime() {
+        if (null != this.listActivity && this.listActivity.length !== 0) {
+            const lastActivity: any = this.listActivity[this.listActivity.length - 1];
+            const lastTime = lastActivity.timeCreate;
+            this.time = new Date(lastTime).getTime();
+        }
     }
 }
