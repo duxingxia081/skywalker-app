@@ -2,19 +2,21 @@ import {Component, OnInit} from '@angular/core';
 import {DataService} from '../../service/data.service';
 import {ModalController} from '@ionic/angular';
 import {ModifyMyActivityComponent} from './modify-my-activity/modify-my-activity.component';
+import {UserInfo} from '../../class';
 
 @Component({
     selector: 'app-my-activity',
     templateUrl: './my-activity.page.html',
     styleUrls: ['./my-activity.page.scss'],
 })
-export class MyActivityPage implements OnInit {
+export class MyActivityPage extends UserInfo implements OnInit {
 
     listActivity: Array<any>;
     time = new Date().getTime();
 
-    constructor(private dataService: DataService,
+    constructor(protected dataService: DataService,
                 private modalController: ModalController) {
+        super(dataService);
     }
 
     ngOnInit() {
@@ -35,7 +37,8 @@ export class MyActivityPage implements OnInit {
 
     getActivities(event?) {
         const params = {
-            'time': this.time
+            'time': this.time,
+            'userId': this.userInfo.userId
         };
         this.dataService.getData('activity', params).subscribe(
             res => {
@@ -49,8 +52,6 @@ export class MyActivityPage implements OnInit {
                         this.listActivity = res.data.list;
                     }
                     this.getLastTime();
-                    console.log(this.listActivity.length);
-                    console.log(this.listActivity);
                 }
             }
         );
