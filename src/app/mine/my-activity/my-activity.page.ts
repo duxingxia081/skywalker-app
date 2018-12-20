@@ -12,7 +12,7 @@ import {UserInfo} from '../../class';
 export class MyActivityPage extends UserInfo implements OnInit {
 
     listActivity: Array<any>;
-    time = new Date().getTime();
+    activeId = 1000000;
 
     constructor(protected dataService: DataService,
                 private modalController: ModalController) {
@@ -37,7 +37,7 @@ export class MyActivityPage extends UserInfo implements OnInit {
 
     getActivities(event?) {
         const params = {
-            'time': this.time,
+            'activeId': this.activeId,
             'userId': this.userInfo.userId
         };
         this.dataService.getData('activity', params).subscribe(
@@ -51,17 +51,16 @@ export class MyActivityPage extends UserInfo implements OnInit {
                     else {
                         this.listActivity = res.data.list;
                     }
-                    this.getLastTime();
+                    this.getLastActiveId();
                 }
             }
         );
     }
 
-    getLastTime() {
+    getLastActiveId() {
         if (null != this.listActivity && this.listActivity.length !== 0) {
             const lastActivity: any = this.listActivity[this.listActivity.length - 1];
-            const lastTime = lastActivity.timeCreate;
-            this.time = new Date(lastTime).getTime();
+            this.activeId = lastActivity.activeId;
         }
     }
 }

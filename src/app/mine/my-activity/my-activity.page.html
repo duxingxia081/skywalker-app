@@ -18,48 +18,48 @@
             <ion-label>我参与的活动</ion-label>
         </ion-segment-button>
     </ion-segment>
+    <ion-card *ngFor="let activity of listActivity">
+        <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
+        <ion-card-header>
+            <ion-buttons>
+                <ion-icon name="pin" slot="start"></ion-icon>
+                <ion-card-subtitle>丽江 大理 泸沽湖</ion-card-subtitle>
+            </ion-buttons>
+            <ion-buttons>
+                <ion-icon name="calendar" slot="start"></ion-icon>
+                <ion-card-subtitle>于{{activity.goTime}}出发,约{{activity.days}}天行程</ion-card-subtitle>
+            </ion-buttons>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-chip>
+                <ion-avatar>
+                    <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
+                </ion-avatar>
+                <ion-avatar>
+                    <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
+                </ion-avatar>
+                <ion-avatar>
+                    <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
+                </ion-avatar>
+                <ion-avatar>
+                    <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
+                </ion-avatar>
+                <ion-avatar>
+                    <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
+                </ion-avatar>
+                <ion-avatar>
+                    <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
+                </ion-avatar>
+                <ion-avatar>
+                    <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
+                </ion-avatar>
+            </ion-chip>
+        </ion-card-content>
+    </ion-card>
     <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
         <ion-infinite-scroll-content
                 loadingSpinner="bubbles"
                 loadingText="加载更多...">
-            <ion-card *ngFor="let activity of listActivity">
-                <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
-                <ion-card-header>
-                    <ion-buttons>
-                        <ion-icon name="pin" slot="start"></ion-icon>
-                        <ion-card-subtitle>丽江 大理 泸沽湖</ion-card-subtitle>
-                    </ion-buttons>
-                    <ion-buttons>
-                        <ion-icon name="calendar" slot="start"></ion-icon>
-                        <ion-card-subtitle>于{{activity.goTime}}出发,约{{activity.days}}天行程</ion-card-subtitle>
-                    </ion-buttons>
-                </ion-card-header>
-                <ion-card-content>
-                    <ion-chip>
-                        <ion-avatar>
-                            <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
-                        </ion-avatar>
-                        <ion-avatar>
-                            <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
-                        </ion-avatar>
-                        <ion-avatar>
-                            <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
-                        </ion-avatar>
-                        <ion-avatar>
-                            <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
-                        </ion-avatar>
-                        <ion-avatar>
-                            <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
-                        </ion-avatar>
-                        <ion-avatar>
-                            <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
-                        </ion-avatar>
-                        <ion-avatar>
-                            <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
-                        </ion-avatar>
-                    </ion-chip>
-                </ion-card-content>
-            </ion-card>
         </ion-infinite-scroll-content>
     </ion-infinite-scroll>
 </ion-content>
