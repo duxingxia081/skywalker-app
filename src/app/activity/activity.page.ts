@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
     styleUrls: ['./activity.page.scss'],
 })
 export class ActivityPage implements OnInit {
-
+    type = '00';
     slideOpts = {
         effect: 'flip',
         autoplay: true

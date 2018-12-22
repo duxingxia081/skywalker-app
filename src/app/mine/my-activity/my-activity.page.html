@@ -23,7 +23,11 @@
         <ion-card-header>
             <ion-buttons>
                 <ion-icon name="pin" slot="start"></ion-icon>
-                <ion-card-subtitle>丽江 大理 泸沽湖</ion-card-subtitle>
+                <ion-card-subtitle>{{activity.activeTitle}}</ion-card-subtitle>
+            </ion-buttons>
+            <ion-buttons>
+                <ion-icon name="pin" slot="start"></ion-icon>
+                <ion-card-subtitle>{{activity.startAddressName}} 到 {{activity.endAddressName}}</ion-card-subtitle>
             </ion-buttons>
             <ion-buttons>
                 <ion-icon name="calendar" slot="start"></ion-icon>

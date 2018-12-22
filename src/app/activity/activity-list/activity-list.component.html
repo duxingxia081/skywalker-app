@@ -1,1 +1,70 @@
-<ion-button>asdfasdfadsf</ion-button>
+<ion-card *ngFor="let activity of listActivity">
+    <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
+    <ion-card-header>
+        <p>{{activity.activeTitle}}</p>
+    </ion-card-header>
+    <ion-card-content>
+        <ion-list>
+            <ion-row align-items-center>
+                <ion-col size="8">
+                    <ion-buttons>
+                        <ion-icon name="hand" slot="start"></ion-icon>
+                        <label>本活动由{{activity.nickname}}发起</label>
+                    </ion-buttons>
+                </ion-col>
+                <ion-col align-self-end>
+                    <ion-button fill="outline" color="warning" size="small" aria-disabled="true">{{activity.typeName}}
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+            <ion-row align-items-center>
+                <ion-col size="9">
+                    <ion-buttons>
+                        <ion-icon name="pin" slot="start"></ion-icon>
+                        <label>{{activity.startAddressName}} 到 {{activity.endAddressName}}</label>
+                    </ion-buttons>
+                </ion-col>
+                <ion-col>
+                    <p>AA</p>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-buttons>
+                        <ion-icon name="calendar" slot="start"></ion-icon>
+                        <ion-card-subtitle>于{{activity.goTime}}出发,约{{activity.days}}天行程</ion-card-subtitle>
+                    </ion-buttons>
+                </ion-col>
+            </ion-row>
+        </ion-list>
+        <ion-chip>
+            <ion-avatar>
+                <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
+            </ion-avatar>
+            <ion-avatar>
+                <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
+            </ion-avatar>
+            <ion-avatar>
+                <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
+            </ion-avatar>
+            <ion-avatar>
+                <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
+            </ion-avatar>
+            <ion-avatar>
+                <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
+            </ion-avatar>
+            <ion-avatar>
+                <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
+            </ion-avatar>
+            <ion-avatar>
+                <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
+            </ion-avatar>
+        </ion-chip>
+    </ion-card-content>
+</ion-card>
+<ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="加载更多...">
+    </ion-infinite-scroll-content>
+</ion-infinite-scroll>
