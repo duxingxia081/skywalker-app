@@ -1,12 +1,10 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
-
-import {IonicModule} from '@ionic/angular';
 
 import {ActivityPage} from './activity.page';
 import {ActivityListComponent} from './activity-list/activity-list.component';
+import {ActivityDetailComponent} from './activity-detail/activity-detail.component';
+import {SharedModule} from '../shared/shared.module';
 
 const routes: Routes = [
     {
@@ -23,12 +21,13 @@ const routes: Routes = [
 
 @NgModule({
     imports: [
-        CommonModule,
-        FormsModule,
-        IonicModule,
+        SharedModule,
         RouterModule.forChild(routes)
     ],
-    declarations: [ActivityPage, ActivityListComponent]
+    declarations: [ActivityPage, ActivityListComponent, ActivityDetailComponent],
+    entryComponents: [
+        ActivityDetailComponent
+    ]
 })
 export class ActivityPageModule {
 }

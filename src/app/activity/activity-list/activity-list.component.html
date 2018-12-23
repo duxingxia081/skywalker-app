@@ -1,4 +1,4 @@
-<ion-card *ngFor="let activity of listActivity">
+<ion-card *ngFor="let activity of listActivity" (click)="showDetail(activity.activeId)">
     <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
     <ion-card-header>
         <p>{{activity.activeTitle}}</p>

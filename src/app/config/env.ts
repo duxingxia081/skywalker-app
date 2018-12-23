@@ -1,2 +1,2 @@
-const BaseUrl = 'http://localhost:9999/';
+const BaseUrl = 'http://marry.wicp.net/';
 export {BaseUrl};

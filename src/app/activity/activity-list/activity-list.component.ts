@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DataService} from '../../service/data.service';
 import {ModalController} from '@ionic/angular';
+import {ActivityDetailComponent} from '../activity-detail/activity-detail.component';
 
 @Component({
     selector: 'app-activity-list',
@@ -13,7 +14,7 @@ export class ActivityListComponent implements OnInit {
     activeId = 1000000;
     @Input() activityType: string;
 
-    constructor(protected dataService: DataService,
+    constructor(private dataService: DataService,
                 private modalController: ModalController) {
     }
 
@@ -21,9 +22,6 @@ export class ActivityListComponent implements OnInit {
         this.getActivities();
     }
 
-
-    async modifyMyActivity() {
-    }
 
     loadData(event) {
         this.getActivities(event);
@@ -58,5 +56,13 @@ export class ActivityListComponent implements OnInit {
             const lastActivity: any = this.listActivity[this.listActivity.length - 1];
             this.activeId = lastActivity.activeId;
         }
+    }
+
+    async showDetail(activeId: number) {
+        const modal = await this.modalController.create({
+            component: ActivityDetailComponent,
+            componentProps: {activeId: activeId}
+        });
+        return await modal.present();
     }
 }

@@ -1,18 +1,15 @@
 <ion-header>
     <ion-slides pager="true" [options]="slideOpts">
         <ion-slide>
-            <img src="../../assets/imgs/myback.jpg" height="1080" width="1920"/>
+            <img src="../../assets/imgs/myback.jpg"/>
         </ion-slide>
         <ion-slide>
-            <img src="../../assets/imgs/myback.jpg" height="1080" width="1920"/>
+            <img src="../../assets/imgs/myback.jpg"/>
         </ion-slide>
         <ion-slide>
-            <img src="../../assets/imgs/myback.jpg" height="1080" width="1920"/>
+            <img src="../../assets/imgs/myback.jpg"/>
         </ion-slide>
     </ion-slides>
-</ion-header>
-
-<ion-content padding>
     <ion-segment>
         <ion-segment-button checked (ionSelect)="changeType('00')">
             <ion-label>最新推荐</ion-label>
@@ -27,6 +24,9 @@
             <ion-label>户外约伴</ion-label>
         </ion-segment-button>
     </ion-segment>
+</ion-header>
+
+<ion-content padding>
     <ng-container [ngSwitch]="type">
         <app-activity-list [activityType]="00" *ngSwitchCase="'00'"></app-activity-list>
     </ng-container>
