@@ -2,9 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {DataService} from '../../../service/data.service';
 import {Activity} from '../../../entity/activity';
 import {ModalController} from '@ionic/angular';
+import {ImagePickerOptions} from '@ionic-native/image-picker';
+import {ImagePicker} from '@ionic-native/image-picker/ngx';
+import {Crop} from '@ionic-native/crop/ngx';
+import {BaseUrl} from '../../../config/env';
 
 @Component({
     selector: 'app-modify-my-activity',
+    providers: [ImagePicker, Crop],
     templateUrl: './modify-my-activity.component.html',
     styleUrls: ['./modify-my-activity.component.scss']
 })
@@ -12,9 +17,21 @@ export class ModifyMyActivityComponent implements OnInit {
 
     activityTypes: any;
     activity: Activity;
+    files: Array<any>;
+    upload: any = {
+        url: BaseUrl + 'activity/activityImg', // 接收图片的url
+        params: {},
+        success: (data) => {
+            if (data.code !== '0') {
+                this.dataService.toastTip(data.message);
+            }
+        } // 图片上传成功后的回调
+    };
 
     constructor(private dataService: DataService,
-                private modalController: ModalController) {
+                private modalController: ModalController,
+                private imagePicker: ImagePicker,
+                private crop: Crop) {
         this.activity = new Activity();
     }
 
@@ -67,8 +84,45 @@ export class ModifyMyActivityComponent implements OnInit {
             if (res.code !== '0') {
                 this.dataService.toastTip(res.message);
             } else {
+                if (null != this.files) {
+                    this.upload.params = {'activeId': res.data};
+                    this.files.forEach(file => {
+                        this.dataService.uploadImg(file, this.upload);
+                    });
+                }
                 this.modalController.dismiss();
             }
         });
+    }
+
+    /**
+     * 选择图片
+     */
+    openImagePicker() {
+        const options: ImagePickerOptions = {
+            maximumImagesCount: 1,
+            outputType: 0
+        };
+        this.imagePicker.getPictures(options)
+            .then((results) => {
+                this.reduceImages(results);
+            }, (err) => {
+                console.log('openImagePicker' + err);
+            });
+    }
+
+    reduceImages(selectedImg: any): any {
+        return selectedImg.reduce((promise: any, item: any) => {
+            return promise.then((result) => {
+                return this.crop.crop(item, {quality: 75, targetHeight: 108, targetWidth: 192})
+                    .then(newImage => {
+                        if (null == this.files) {
+                            this.files = new Array<any>();
+                        }
+                        this.files.push(newImage);
+                        // this.dataService.uploadImg(newImage, this.upload);
+                    });
+            });
+        }, Promise.resolve());
     }
 }

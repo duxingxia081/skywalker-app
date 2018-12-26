@@ -2,7 +2,7 @@
     <back-header wTitle="发布活动"></back-header>
 </ion-header>
 <ion-content>
-    <ngForm *ngIf="key!=4" #form="ngForm">
+    <ng-form *ngIf="key!=4" #form="ngForm">
         <ion-list>
             <ion-item>
                 <ion-label position="floating">活动标题</ion-label>
@@ -46,7 +46,11 @@
                 <ion-textarea [(ngModel)]="activity.content" required maxlength="300" minlength="5" rows="5"
                               name="content"></ion-textarea>
             </ion-item>
+            <ion-item>
+                <ion-img *ngFor="let img of files" src="${{img}}"></ion-img>
+                <ion-fab-button *ngIf="files?.length!=3" (click)="openImagePicker()" color="medium"><ion-icon name="add"></ion-icon></ion-fab-button>
+            </ion-item>
         </ion-list>
         <ion-button expand="full" color="success" (click)="modify()">立即发布</ion-button>
-    </ngForm>
+    </ng-form>
 </ion-content>
