@@ -3,7 +3,7 @@ import {ModalController} from '@ionic/angular';
 import {Activity} from '../../../../core/entity/activity';
 import {BaseUrl} from '../../../../core/config/env';
 import {DataService} from '../../../../core/service/data.service';
-import {ImagePicker} from '@ionic-native/image-picker/ngx';
+import {ImagePicker, ImagePickerOptions} from '@ionic-native/image-picker/ngx';
 import {Crop} from '@ionic-native/crop/ngx';
 
 @Component({
