@@ -1,0 +1,31 @@
+<ion-header>
+    <back-header wTitle="个人中心"></back-header>
+</ion-header>
+<ion-content>
+    <ion-toolbar>
+        <ion-segment [(ngModel)]="type">
+            <ion-segment-button checked value="personInfo" (ionSelect)="changeType('personInfo')">
+                <ion-icon src="/assets/icon/person-info.svg"></ion-icon>
+                <ion-label>个人信息</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="passwordInfo" (ionSelect)="changeType('passwordInfo')">
+                <ion-icon src="/assets/icon/password-info.svg"></ion-icon>
+                <ion-label>账号密码</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="safeInfo" (ionSelect)="changeType('safeInfo')">
+                <ion-icon src="/assets/icon/safe-info.svg"></ion-icon>
+                <ion-label>安全隐私</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="otherInfo" (ionSelect)="changeType('otherInfo')">
+                <ion-icon src="/assets/icon/other-info.svg"></ion-icon>
+                <ion-label>其他设置</ion-label>
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+    <ng-container [ngSwitch]="type">
+        <app-person-info [userInfo]="userInfo" *ngSwitchCase="'personInfo'"></app-person-info>
+        <app-password-info [userInfo]="userInfo" *ngSwitchCase="'passwordInfo'"></app-password-info>
+        <app-safe-info *ngSwitchCase="'safeInfo'"></app-safe-info>
+        <app-other-info *ngSwitchCase="'otherInfo'"></app-other-info>
+    </ng-container>
+</ion-content>

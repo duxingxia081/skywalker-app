@@ -12,16 +12,16 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../../routes/tab1/tab1.module#Tab1PageModule'
+            loadChildren: '../../routes/friend/friend.module#FriendPageModule'
           }
         ]
       },
       {
-        path: 'active',
+        path: 'activity',
         children: [
           {
             path: '',
-            loadChildren: '../../tab2/tab2.module#Tab2PageModule'
+            loadChildren: '../../routes/activity/activity.module#ActivityPageModule'
           }
         ]
       },
@@ -30,7 +30,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../../tab3/tab3.module#Tab3PageModule'
+            loadChildren: '../../routes/share/share.module#SharePageModule'
           }
         ]
       },
@@ -39,16 +39,16 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../../tab3/tab3.module#Tab3PageModule'
+            loadChildren: '../../routes/destination/destination.module#DestinationPageModule'
           }
         ]
       },
       {
-        path: 'me',
+        path: 'mine',
         children: [
           {
             path: '',
-            loadChildren: '../../tab3/tab3.module#Tab3PageModule'
+            loadChildren: '../../routes/mine/mine.module#MinePageModule'
           }
         ]
       },

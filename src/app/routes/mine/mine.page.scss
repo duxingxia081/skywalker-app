@@ -1,0 +1,32 @@
+ion-title {
+  size: 1.2rem;
+  color: #ffffff;
+  position: inherit;
+}
+
+ion-header {
+  background-color: #3880ff;
+}
+
+ion-header ion-grid {
+  margin-top: 20px;
+}
+
+ion-content ion-grid {
+  padding: 0px;
+}
+
+ion-header ion-grid ion-row ion-label, h2, h3, p {
+  color: #ffffff;
+}
+
+ion-content ion-grid ion-row ion-col {
+  border: 0.5px solid rgba(0, 0, 0, 0.13);
+  height: 64px;
+  text-align: center;
+}
+
+ion-content ion-grid ion-row ion-col p {
+  color: #000;
+  margin-top: 0px;
+}
