@@ -63,17 +63,17 @@ export class RigisterComponent implements OnInit {
                 return;
             }
         }
-        if (!this.codeNumber) {
+/*        if (!this.codeNumber) {
             this.dataService.toastTip('请填写验证码');
             return;
-        }
+        }*/
         this.dataService.postDataNotLogin('users', {
             'userName': this.userName,
             'password': this.userPwd,
             'captcha': this.codeNumber
         }).subscribe(res => {
             if (res.code !== '0') {
-                this.getCaptcha();
+                // this.getCaptcha();
                 this.dataService.toastTip(res.message);
             } else {
                 this.dataService.toastTip('注册成功!');

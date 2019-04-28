@@ -62,4 +62,6 @@ export class MyActivityPage extends UserInfo implements OnInit {
             this.activeId = lastActivity.activeId;
         }
     }
+    changeType(type: string) {
+    }
 }

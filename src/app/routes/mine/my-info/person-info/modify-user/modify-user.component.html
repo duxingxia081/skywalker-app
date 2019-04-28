@@ -3,7 +3,7 @@
 </ion-header>
 
 <ion-content padding>
-    <ngForm *ngIf="key!=4" #form="ngForm">
+    <ngForm *ngIf="key!='4'" #form="ngForm">
         <ion-item *ngIf="key==1">
             <ion-label position="floating">输入{{title}}</ion-label>
             <ion-input [(ngModel)]="userInfo.nickname" type="text" name="nickname" maxlength="8"></ion-input>
@@ -29,7 +29,7 @@
         </ion-item>
         <ion-button expand="full" color="success" (click)="modify()">确认修改</ion-button>
     </ngForm>
-    <ng-container *ngIf="key==4">
+    <ng-container *ngIf="key=='4'">
         <img src="{{userInfo.qrCodeImage}}"/>
     </ng-container>
 </ion-content>

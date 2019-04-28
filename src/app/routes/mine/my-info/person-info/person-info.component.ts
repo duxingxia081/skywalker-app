@@ -64,7 +64,7 @@ export class PersonInfoComponent implements OnInit {
         );
     }
 
-    private getQrCode() {
+    getQrCode() {
         this.dataService.getQrCode().subscribe(res => {
             if (res.code === '0') {
                 this.userInfo.qrCodeImage = res.data;

@@ -24,11 +24,11 @@
             <ion-label>手机校验码</ion-label>
             <ion-input type="text" maxlength="4" name="mobileCode" [(ngModel)]="mobileCode"></ion-input>
         </ion-item>
-        <ion-item>
+        <!--<ion-item>
             <ion-label>验证码</ion-label>
             <ion-input type="text" maxlength="4" name="codeNumber" [(ngModel)]="codeNumber"></ion-input>
             <img (click)="getCaptcha()" src="{{captchaCodeImg}}"/>
-        </ion-item>
+        </ion-item>-->
         <ion-button expand="full" color="success" (click)="logIn()">登录</ion-button>
         <ion-grid>
             <ion-row>

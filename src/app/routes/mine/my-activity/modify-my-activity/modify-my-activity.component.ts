@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ModalController} from '@ionic/angular';
 import {Activity} from '../../../../core/entity/activity';
 import {BaseUrl} from '../../../../core/config/env';
@@ -13,7 +13,7 @@ import {Crop} from '@ionic-native/crop/ngx';
     styleUrls: ['./modify-my-activity.component.scss']
 })
 export class ModifyMyActivityComponent implements OnInit {
-
+    @Input() key: string;
     activityTypes: any;
     activity: Activity;
     files: Array<any>;

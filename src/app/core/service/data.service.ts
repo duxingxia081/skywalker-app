@@ -21,7 +21,7 @@ export class DataService {
     }
 
     accountLogin(userName: string, password: string, captcha: string): any {
-        return this.http.post(BaseUrl + 'auth', {userName, password, captcha}, {withCredentials: true});
+        return this.http.post(BaseUrl + 'auth', {userName, password, captcha});
     }
 
     getData(uri, params?): any {
