@@ -17,11 +17,11 @@ export class DataService {
     }
 
     getCaptcha(): any {
-        return this.http.get(BaseUrl + 'captcha');
+        return this.http.get(BaseUrl + 'captcha', {withCredentials: true});
     }
 
     accountLogin(userName: string, password: string, captcha: string): any {
-        return this.http.post(BaseUrl + 'auth', {userName, password, captcha});
+        return this.http.post(BaseUrl + 'auth', {userName, password, captcha}, {withCredentials: true});
     }
 
     getData(uri, params?): any {
@@ -30,7 +30,7 @@ export class DataService {
     }
 
     postDataNotLogin(uri, data): any {
-        return this.http.post(BaseUrl + uri, data);
+        return this.http.post(BaseUrl + uri, data, {withCredentials: true});
     }
 
     postData(uri, data): any {
