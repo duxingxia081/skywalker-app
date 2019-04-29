@@ -17,7 +17,7 @@ export class MyInfoComponent extends UserInfo implements OnInit {
     ngOnInit(): void {
     }
 
-    changeType(type: string) {
-        this.type = type;
+    changeType(type: any) {
+        this.type = type.target.value;
     }
 }

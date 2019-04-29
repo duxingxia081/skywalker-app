@@ -69,8 +69,7 @@ export class RigisterComponent implements OnInit {
         }*/
         this.dataService.postDataNotLogin('users', {
             'userName': this.userName,
-            'password': this.userPwd,
-            'captcha': this.codeNumber
+            'password': this.userPwd
         }).subscribe(res => {
             if (res.code !== '0') {
                 // this.getCaptcha();

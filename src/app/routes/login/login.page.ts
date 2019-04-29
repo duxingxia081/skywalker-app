@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {AppService} from '../../core/service/app.service';
 import {DataService} from '../../core/service/data.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginPage implements OnInit {
     constructor(
         private location: Location,
         private appService: AppService,
-        private dataService: DataService) {
+        private dataService: DataService,
+        private router: Router) {
     }
 
     ngOnInit() {
@@ -77,7 +79,7 @@ export class LoginPage implements OnInit {
                 this.dataService.setStore('authorization', res.data);
                 this.getHeadImg();
                 this.getUserInfo();
-                this.location.back();
+                this.router.navigate(['/tabs/mine']);
             }
         });
     }

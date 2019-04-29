@@ -30,7 +30,7 @@ export class DataService {
     }
 
     postDataNotLogin(uri, data): any {
-        return this.http.post(BaseUrl + uri, data, {withCredentials: true});
+        return this.http.post(BaseUrl + uri, data);
     }
 
     postData(uri, data): any {

@@ -19,6 +19,7 @@ export class ActivityPage implements OnInit {
     ngOnInit() {
     }
 
-    changeType(type: string) {
+    changeType(type: any) {
+        console.log(type.target.value);
     }
 }

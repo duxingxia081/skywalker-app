@@ -1,20 +1,23 @@
 <ion-header>
     <ion-toolbar color="primary">
-        <ion-buttons slot="secondary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>我的活动</ion-title>
+        <ion-buttons slot="end">
             <ion-button (click)="modifyMyActivity()">
                 <ion-icon slot="icon-only" name="add"></ion-icon>
             </ion-button>
         </ion-buttons>
-        <ion-title>我的活动</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-    <ion-segment>
-        <ion-segment-button checked (ionSelect)="changeType('00')">
+    <ion-segment (ionChange)="changeType($event)">
+        <ion-segment-button checked value="00">
             <ion-label>我发布的活动</ion-label>
         </ion-segment-button>
-        <ion-segment-button (ionSelect)="changeType('01')">
+        <ion-segment-button value="01">
             <ion-label>我参与的活动</ion-label>
         </ion-segment-button>
     </ion-segment>
