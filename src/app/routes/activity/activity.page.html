@@ -11,23 +11,21 @@
         </ion-slide>
     </ion-slides>
     <ion-segment (ionChange)="changeType($event)">
-        <ion-segment-button checked value="00">
+        <ion-segment-button checked value=0>
             <ion-label>最新推荐</ion-label>
         </ion-segment-button>
-        <ion-segment-button value="01">
+        <ion-segment-button value=2>
             <ion-label>自驾游</ion-label>
         </ion-segment-button>
-        <ion-segment-button value="02">
+        <ion-segment-button value=3>
             <ion-label>亲子游</ion-label>
         </ion-segment-button>
-        <ion-segment-button value="03">
+        <ion-segment-button value=4>
             <ion-label>户外约伴</ion-label>
         </ion-segment-button>
     </ion-segment>
 </ion-header>
 
 <ion-content padding>
-    <ng-container [ngSwitch]="type">
-        <app-activity-list [activityType]="00" *ngSwitchCase="'00'"></app-activity-list>
-    </ng-container>
+    <app-activity-list [activityType]="type"></app-activity-list>
 </ion-content>

@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
+import {ActivityListComponent} from './activity-list/activity-list.component';
 
 @Component({
     selector: 'app-activity',
@@ -7,19 +8,18 @@ import {Router} from '@angular/router';
     styleUrls: ['./activity.page.scss'],
 })
 export class ActivityPage implements OnInit {
-    type = '00';
+    type = 0;
     slideOpts = {
         effect: 'flip',
         autoplay: true
     };
-
     constructor(private router: Router) {
     }
 
     ngOnInit() {
     }
 
-    changeType(type: any) {
-        console.log(type.target.value);
+    changeType(event: any) {
+        this.type = event.target.value;
     }
 }

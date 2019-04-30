@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterContentChecked, AfterViewChecked, Component, DoCheck, Input, OnChanges, OnInit} from '@angular/core';
 import {ModalController} from '@ionic/angular';
 import {ActivityDetailComponent} from '../activity-detail/activity-detail.component';
 import {DataService} from '../../../core/service/data.service';
@@ -8,11 +8,11 @@ import {DataService} from '../../../core/service/data.service';
     templateUrl: './activity-list.component.html',
     styleUrls: ['./activity-list.component.scss']
 })
-export class ActivityListComponent implements OnInit {
+export class ActivityListComponent implements OnInit, OnChanges {
 
     listActivity: Array<any>;
     activeId = 1000000;
-    @Input() activityType: string;
+    @Input() activityType: number;
 
     constructor(private dataService: DataService,
                 private modalController: ModalController) {
@@ -22,6 +22,10 @@ export class ActivityListComponent implements OnInit {
         this.getActivities();
     }
 
+    ngOnChanges() {
+        this.activeId = 1000000;
+        this.getActivities();
+    }
 
     loadData(event) {
         this.getActivities(event);
@@ -29,7 +33,8 @@ export class ActivityListComponent implements OnInit {
 
     getActivities(event?) {
         const params = {
-            'activeId': this.activeId
+            'activeId': this.activeId,
+            'activityType': this.activityType
         };
         this.dataService.getData('activity', params).subscribe(
             res => {

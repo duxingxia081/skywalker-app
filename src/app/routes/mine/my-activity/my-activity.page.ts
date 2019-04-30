@@ -3,6 +3,7 @@ import {ModalController} from '@ionic/angular';
 import {ModifyMyActivityComponent} from './modify-my-activity/modify-my-activity.component';
 import {DataService} from '../../../core/service/data.service';
 import {UserInfo} from '../../../core/class';
+
 @Component({
     selector: 'app-my-activity',
     templateUrl: './my-activity.page.html',
@@ -12,6 +13,7 @@ export class MyActivityPage extends UserInfo implements OnInit {
 
     listActivity: Array<any>;
     activeId = 1000000;
+    type = '00';
 
     constructor(protected dataService: DataService,
                 private modalController: ModalController) {
@@ -37,7 +39,8 @@ export class MyActivityPage extends UserInfo implements OnInit {
     getActivities(event?) {
         const params = {
             'activeId': this.activeId,
-            'userId': this.userInfo.userId
+            'userId': this.userInfo.userId,
+            'type': this.type
         };
         this.dataService.getData('activity', params).subscribe(
             res => {
@@ -62,6 +65,10 @@ export class MyActivityPage extends UserInfo implements OnInit {
             this.activeId = lastActivity.activeId;
         }
     }
-    changeType(type: any) {
+
+    changeType(event: any) {
+        this.type = event.target.value;
+        this.activeId = 1000000;
+        this.getActivities();
     }
 }

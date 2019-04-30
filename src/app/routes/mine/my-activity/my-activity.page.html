@@ -10,9 +10,6 @@
             </ion-button>
         </ion-buttons>
     </ion-toolbar>
-</ion-header>
-
-<ion-content padding>
     <ion-segment (ionChange)="changeType($event)">
         <ion-segment-button checked value="00">
             <ion-label>我发布的活动</ion-label>
@@ -21,6 +18,9 @@
             <ion-label>我参与的活动</ion-label>
         </ion-segment-button>
     </ion-segment>
+</ion-header>
+
+<ion-content padding>
     <ion-card *ngFor="let activity of listActivity">
         <ion-img src="../../assets/imgs/myback.jpg"></ion-img>
         <ion-card-header>
