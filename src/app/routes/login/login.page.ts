@@ -34,6 +34,7 @@ export class LoginPage implements OnInit {
         this.loginType = 't-userName';
         this.showPwd = false;
         // this.getCaptcha();
+        this.dataService.initMobsms();
     }
 
     getCaptcha() {
@@ -66,11 +67,15 @@ export class LoginPage implements OnInit {
                 this.dataService.toastTip('请填写手机验证码');
                 return;
             }
+            /*if (!this.dataService.submitVerifyCode(this.userMobile, this.mobileCode)) {
+                this.dataService.toastTip('验证码不正确');
+                return;
+            }*/
         }
-       /* if (!this.codeNumber) {
-            this.dataService.toastTip('请填写验证码');
-            return;
-        }*/
+        /* if (!this.codeNumber) {
+             this.dataService.toastTip('请填写验证码');
+             return;
+         }*/
         this.dataService.accountLogin(this.userName, this.userPwd, this.codeNumber).subscribe(res => {
             if (res.code !== '0') {
                 // this.getCaptcha();
@@ -102,5 +107,14 @@ export class LoginPage implements OnInit {
                 this.appService.userInfoEvent.emit('update');
             }
         });
+    }
+
+    // 发送验证码
+    requestVerifyCode() {
+        if (!this.userMobile) {
+            this.dataService.toastTip('请填写手机号');
+            return;
+        }
+        this.dataService.requestVerifyCode(this.userMobile);
     }
 }

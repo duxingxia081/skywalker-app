@@ -11,6 +11,7 @@ import {BaseUrl} from '../config/env';
 export class DataService {
     private headers: HttpHeaders;
     private authorization: string;
+    private cordovaMobSms: any;
 
     constructor(private http: HttpClient,
                 private toastCtrl: ToastController) {
@@ -134,5 +135,34 @@ export class DataService {
             return;
         }
         localStorage.removeItem(name);
+    }
+
+    // 发送验证码前需要初始化操作
+    initMobsms() {
+        if (!window['mobsms']) {
+            alert('请在真机调试或检查插件是否安装正确');
+            return;
+        }
+        // 申请key： http://dashboard.mob.com/#!/sms/dashboard
+        let mobConfig = {
+            APPKEY: '29d025c53ffd1',
+            APPSECRET: '9d67b36379852a2a5cd3980ca95e44c5'
+        };
+        this.cordovaMobSms = window['mobsms'].init({MobConfig: mobConfig});
+    }
+
+    // 发送验证码
+    requestVerifyCode(mobile) {
+        this.cordovaMobSms.RequestVerifyCode(res => {
+        }, err => {
+        }, mobile);
+    }
+
+    // 判断验证码是否正确
+    submitVerifyCode(mobile, mobileCode) {
+        this.cordovaMobSms.SubmitVerifyCode(res => {
+            console.log(mobile + '******' + mobileCode + '******' + res);
+        }, err => {
+        }, mobile, mobileCode);
     }
 }

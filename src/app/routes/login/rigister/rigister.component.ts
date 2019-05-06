@@ -30,6 +30,7 @@ export class RigisterComponent implements OnInit {
         this.registerType = 't-userName';
         this.showPwd = false;
         this.getCaptcha();
+        this.dataService.initMobsms();
     }
 
     getCaptcha() {
@@ -62,6 +63,7 @@ export class RigisterComponent implements OnInit {
                 this.dataService.toastTip('请填写手机验证码');
                 return;
             }
+            this.dataService.submitVerifyCode(this.userMobile, this.mobileCode)
         }
 /*        if (!this.codeNumber) {
             this.dataService.toastTip('请填写验证码');
@@ -79,5 +81,13 @@ export class RigisterComponent implements OnInit {
                 this.location.back();
             }
         });
+    }
+    // 发送验证码
+    requestVerifyCode() {
+        if (!this.userMobile) {
+            this.dataService.toastTip('请填写手机号');
+            return;
+        }
+        this.dataService.requestVerifyCode(this.userMobile);
     }
 }

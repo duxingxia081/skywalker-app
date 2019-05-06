@@ -3,7 +3,7 @@
     <name>skywalker</name>
     <description>天行者</description>
     <author email="332931496@qq.com" href="http://ionicframework.com/">admin</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.0.133:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -88,4 +88,5 @@
     <plugin name="cordova-plugin-telerik-imagepicker" spec="2.3.2" />
     <plugin name="cordova-plugin-crop" spec="0.4.0" />
     <plugin name="cordova-plugin-file-transfer" spec="1.7.1" />
+    <allow-navigation href="http://192.168.0.133:8100" sessionid="3a1f83a5" />
 </widget>
