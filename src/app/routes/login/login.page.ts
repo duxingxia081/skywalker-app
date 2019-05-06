@@ -34,7 +34,6 @@ export class LoginPage implements OnInit {
         this.loginType = 't-userName';
         this.showPwd = false;
         // this.getCaptcha();
-        this.dataService.initMobsms();
     }
 
     getCaptcha() {
@@ -48,30 +47,19 @@ export class LoginPage implements OnInit {
     }
 
     logIn() {
-        if (this.loginType === 't-userName') {
-            if (!this.userName) {
-                this.dataService.toastTip('请填写用户名');
-                return;
-            }
-            if (!this.userPwd) {
-                this.dataService.toastTip('请填写密码');
-                return;
-            }
+        if (!this.userMobile) {
+            this.dataService.toastTip('请填写手机号');
+            return;
         }
-        if (this.loginType === 't-mobile') {
-            if (!this.userMobile) {
-                this.dataService.toastTip('请填写手机号');
-                return;
-            }
-            if (!this.mobileCode) {
-                this.dataService.toastTip('请填写手机验证码');
-                return;
-            }
-            /*if (!this.dataService.submitVerifyCode(this.userMobile, this.mobileCode)) {
-                this.dataService.toastTip('验证码不正确');
-                return;
-            }*/
+
+        if (!this.userPwd) {
+            this.dataService.toastTip('请填写密码');
+            return;
         }
+        /*if (!this.dataService.submitVerifyCode(this.userMobile, this.mobileCode)) {
+            this.dataService.toastTip('验证码不正确');
+            return;
+        }*/
         /* if (!this.codeNumber) {
              this.dataService.toastTip('请填写验证码');
              return;
@@ -107,14 +95,5 @@ export class LoginPage implements OnInit {
                 this.appService.userInfoEvent.emit('update');
             }
         });
-    }
-
-    // 发送验证码
-    requestVerifyCode() {
-        if (!this.userMobile) {
-            this.dataService.toastTip('请填写手机号');
-            return;
-        }
-        this.dataService.requestVerifyCode(this.userMobile);
     }
 }

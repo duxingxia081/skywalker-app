@@ -5,13 +5,8 @@
 <ion-content padding>
     <ngForm #form="ngForm">
         <ion-item>
-            <ion-select interface="popover" style="margin-left: -16px" [(ngModel)]="registerType" name="registerType">
-                <ion-select-option value="t-userName" selected="true">用户名</ion-select-option>
-                <ion-select-option value="t-mobile">手机号</ion-select-option>
-            </ion-select>
-            <ion-input *ngIf="registerType=='t-userName'" type="text" [(ngModel)]="userName" name="userName"
-                       required></ion-input>
-            <ion-input *ngIf="registerType=='t-mobile'" type="number" [(ngModel)]="userMobile" name="userMobile"
+            <ion-label>手机号</ion-label>
+            <ion-input type="number" [(ngModel)]="userMobile" name="userMobile"
                        required></ion-input>
         </ion-item>
         <ion-item>
@@ -20,7 +15,7 @@
             <ion-input *ngIf="showPwd" type="text" name="userpwd" [(ngModel)]="userPwd" required></ion-input>
             <ion-toggle name="showpwd" [(ngModel)]="showPwd"></ion-toggle>
         </ion-item>
-        <ion-item *ngIf="registerType=='t-mobile'">
+        <ion-item>
             <ion-label>手机校验码</ion-label>
             <ion-input type="number" maxlength="4" name="mobileCode" [(ngModel)]="mobileCode"></ion-input>
             <ion-button (click)="requestVerifyCode()">获取验证码</ion-button>
