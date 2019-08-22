@@ -1,7 +1,0 @@
-{
-  "name": "skywalker-app",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "angular"
-}
