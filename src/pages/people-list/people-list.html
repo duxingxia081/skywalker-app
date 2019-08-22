@@ -1,0 +1,108 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>聊天信息</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list class="topList">
+    <ion-item>
+      <ion-avatar>
+        <img src="assets/imgs/slide0.jpg" alt="">
+      </ion-avatar>
+      <p>吴彦祖</p>
+    </ion-item>
+    <ion-item>
+      <ion-avatar>
+        <img src="assets/imgs/slide0.jpg" alt="">
+      </ion-avatar>
+      <p>吴彦祖</p>
+    </ion-item>
+    <ion-item>
+      <ion-avatar>
+        <img src="assets/imgs/slide0.jpg" alt="">
+      </ion-avatar>
+      <p>吴彦祖</p>
+    </ion-item>
+    <ion-item>
+      <ion-avatar>
+        <img src="assets/imgs/slide0.jpg" alt="">
+      </ion-avatar>
+      <p>吴彦祖</p>
+    </ion-item>
+    <ion-item>
+      <ion-avatar>
+        <img src="assets/imgs/slide0.jpg" alt="">
+      </ion-avatar>
+      <p>吴彦祖</p>
+    </ion-item>
+    <ion-item>
+      <ion-avatar>
+        <img src="assets/imgs/slide0.jpg" alt="">
+      </ion-avatar>
+      <p>吴彦祖</p>
+    </ion-item>
+    <ion-item>
+      <ion-avatar>
+        <img src="assets/imgs/slide0.jpg" alt="">
+      </ion-avatar>
+      <p>吴彦祖</p>
+    </ion-item>
+    <ion-item>
+      <ion-avatar>
+        <img src="assets/imgs/slide0.jpg" alt="">
+      </ion-avatar>
+      <p>吴彦祖</p>
+    </ion-item>
+    <ion-item>
+      <ion-avatar>
+        <img src="assets/imgs/slide0.jpg" alt="">
+      </ion-avatar>
+      <p>吴彦祖</p>
+    </ion-item>
+    <ion-item>
+      <ion-avatar>
+        <img src="assets/imgs/slide0.jpg" alt="">
+      </ion-avatar>
+      <p>吴彦祖</p>
+    </ion-item>
+    
+    <ion-item class="addItem">
+      <ion-avatar>
+          +
+      </ion-avatar>
+      <p>　</p>
+    </ion-item>
+    <ion-item class="addItem">
+      <ion-avatar>
+          -
+      </ion-avatar>
+      <p>　</p>
+    </ion-item>
+  </ion-list>
+  <p class="showMorePeople" (click)="goMorePeople()">查看跟更多成员 <ion-icon name="ios-arrow-forward"></ion-icon></p>
+  <p class="divider"></p>
+
+  <ion-list class="bottomList">
+    <ion-item>
+      <ion-label fixed>我在本群昵称</ion-label>
+      <ion-input type="text" value=""></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>消息免打扰</ion-label>
+      <ion-toggle type="text" value="" [(ngModel)]="noBorder"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>置顶聊天</ion-label>
+      <ion-toggle type="text" value="" [(ngModel)]="topChat"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>保存到通讯录</ion-label>
+      <ion-toggle type="text" value="" [(ngModel)]="saveToList"></ion-toggle>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<button ion-button full class="exitChat">退出群聊</button>

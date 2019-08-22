@@ -1,0 +1,160 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+// .toolbar {
+//         text-align: center;
+//         padding: 0;
+    
+//     ion-icon {
+//         font-size: rem(35);
+//     }
+// }
+
+@import "assets/css/mixin";
+$vm_fontsize: 12; // 是$vm_design 值得十分之一
+$vm_design: 360; // 根据需要替换成设计稿的值,比如设计稿给你的宽度是360px,
+html {
+  font-size: ($vm_fontsize / $vm_design) * 100vw; // 同时，通过Media Queries 限制根元素最大最小值
+  // @media screen and (max-width: 320px) {
+  //   font-size: 32px;
+  // }
+  // @media screen and (min-width: 540px) {
+  //   font-size: 54px;
+  // }
+}
+
+.firstPage {
+        text-align: center;
+        padding: 0;
+    
+    ion-icon {
+        font-size: rem(35);
+    }
+}
+
+.header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+    background-image: none;
+}
+
+.toast-wrapper {
+    width: 50% !important;
+    text-align: center !important;
+}
+
+.back-button{
+    position: absolute;
+    top: rem(18);
+    left: rem(10);
+    z-index: 3;
+    margin: 0;
+    padding: 0;
+    min-width: auto;
+    height: rem(32);
+    line-height: rem(32);
+
+    ion-icon{
+      font-size: rem(22);
+      padding: 0;
+      color:#FFFFFF;
+    }
+}
+
+.toolbar-title {
+    font-size: rem(15);
+    padding: rem(20) rem(12) rem(8);
+    text-align: center;
+}
+
+ion-navbar {
+    .rightBtn  {
+        position: absolute;
+        top: rem(20);
+        right: rem(8);
+        z-index: 1;
+    }
+}
+
+.popover-md .popover-content {
+    box-shadow: initial;
+  }
+  ion-popover.backdrop ion-backdrop {
+    opacity: 0.6;
+  }
+  ion-popover.auto .popover-content {
+    top: 0!important;
+    bottom: 0!important;
+    left: 0!important;
+    right: 0!important;
+    margin: auto;
+  }
+  ion-popover.short .popover-content {
+    height: 200px;
+  }
+  ion-popover.height-300 .popover-content {
+    height: 300px;
+  }
+  ion-popover.tall .popover-content {
+    height: 400px;
+  }
+  ion-popover.mini .popover-arrow{
+    position: absolute;
+    display: block;
+    overflow: hidden;
+    width: 20px;
+    height: 10px;
+    top: rem(52);
+    right: rem(15);
+  }
+  ion-popover.mini .popover-arrow:after {
+    left: 3px;
+    top: 3px;
+    border-radius: 3px;
+    position: absolute;
+    z-index: 10;
+    width: 14px;
+    height: 14px;
+    background-color: #000;
+    opacity: 0.8;
+    content: "";
+    transform: rotate(45deg);
+  }
+  ion-popover.mini .popover-content {
+    width: auto;
+    background-color: #000;
+    opacity: 0.8;
+    top: rem(50)!important;
+  }
+  @media (max-width: 760px) {
+    ion-popover.small .popover-content {
+      width: 80%;
+      left: 10%!important;
+    }
+    ion-popover.large .popover-content {
+      width: 90%;
+      left: 5%!important;
+    }
+  }
+  @media (min-width: 760px) and (max-width: 1440px) {
+    ion-popover.small .popover-content {
+      width: 50%;
+      left: 25%!important;
+    }
+    ion-popover.large .popover-content {
+      width: 80%;
+      left: 10%!important;
+    }
+  }

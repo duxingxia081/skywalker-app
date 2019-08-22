@@ -1,0 +1,149 @@
+page-register {
+    .toolbar-background {
+        // background: linear-gradient(to right, #3555DE, #628FF7)!important;
+        background-color: rgb(0, 186, 255);
+    }
+    .header {
+        @include border-b-1px(#dedede);
+    }
+    .toolbar-title {
+        color: #FFFFFF;
+    }
+    .rightBtn {
+        z-index: 9999;
+        button {
+            color: #fff !important;
+        }
+    }
+    .content {
+        background-color: rgb(0, 186, 255);
+        form {
+            .item {
+                padding-left: 0;
+            }
+            .secondItem, .numberDiv1 {
+                width: 90%;
+                border: 1px solid rgb(0, 186, 255);
+                margin: 0 auto;
+                border-radius: 5px;
+                height: rem(18);
+                margin-top: rem(30);
+                overflow: hidden;
+                &.numberDiv1 {
+                    margin-top: rem(80);
+                }
+                &.numberPwd {
+                    margin-top: rem(32);
+                }
+                .label {
+                    margin: 0;
+                    height: 100%;
+                    line-height: rem(18);
+                }
+                .numberDiv {
+                    height: 100%;
+                    position: relative;
+                    span {
+                        color: rgb(37, 155, 36);
+                        font-size: rem(12);
+                        padding: 0 rem(10);
+                        height: 100%;
+                        line-height: rem(52);
+                        float: left;
+                        height: 100%;
+                        @include border-r-1px(rgb(37, 155, 36));
+                    }
+                    .box {
+                        width: 0;
+                        height: 0;
+                        border-top:10px solid rgba(0,0,0,0);
+                        border-right:10px solid  rgb(37, 155, 36);
+                        border-bottom:10px solid rgba(0,0,0,0);
+                        border-left:10px solid  rgba(0,0,0,0);
+                        position: absolute;
+                        left: rem(15);
+                        bottom: rem(-9);
+                    }
+                    input {
+                        border: 0;
+                        outline: none;
+                        height: 100%;
+                        line-height: rem(52);
+                        float: left;
+                        text-indent: rem(10);
+                    }
+                    .closeBtn {
+                        position: absolute;
+                        right: 0;
+                        top: rem(15);
+                    }
+                    .sedmsg {
+                        height: 100%;
+                        float: right;
+                        color: rgb(37, 155, 36);
+                        // background-color: #ffffff;
+                    }
+                }
+                
+            }
+            .secondItem {
+                .item-inner  {
+                    padding-right: 0;
+                }
+            }
+            .loginBtn {
+                height: rem(50);
+                background-color: #ffffff;
+                color: rgb(0, 186, 255);
+                font-size: rem(22);
+                width: 90%;
+                margin: rem(63) auto rem(65);
+                border-radius: rem(5);
+            }
+            .aggreThis {
+                background-color: rgb(0, 186, 255);
+                width: 90%;
+                margin: rem(10) auto 0;
+                .item-inner {
+                    border-bottom: 0;
+                }
+                .checkbox {
+                    margin-right: rem(15);
+                    float: left;
+                    margin-top: rem(15);
+                }
+                .label {
+                    color: #ffffff;
+                    float: left;
+                    span {
+                        color: rgb(108, 241, 202);
+                    }
+                }
+            }
+        }
+
+        .otherLoginWay {
+            width: 90%;
+            margin: 0 auto;
+            position: relative;
+            p {
+                border-bottom: 1px solid #FFFFFF;
+            }
+            span {
+                position: absolute;
+                display: inline-block;
+                color: #FFFFFF;
+                width: rem(100);
+                text-align: center;
+                background-color: rgb(0, 186, 255);
+                top: rem(-9);
+                left: 50%;
+                margin-left: rem(-50);
+            }
+        }
+        .loginImg {
+            margin: rem(40) auto;
+            text-align: center;
+        }
+    }
+}

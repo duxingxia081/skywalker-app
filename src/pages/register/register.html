@@ -1,0 +1,61 @@
+<ion-header>
+
+    <ion-navbar>
+      <ion-title>注册</ion-title>
+      <!-- <ion-buttons class="rightBtn" right>
+        <button ion-button right>
+          登录
+        </button>
+      </ion-buttons> -->
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content>
+    <form [formGroup]="loginForm" (ngSubmit)="checkMsCode()">
+        <ion-item class="numberDiv1">
+          <div class="numberDiv">
+            <span class="left">手　机</span>
+            <!-- <span class="box" *ngIf="showPhoneBox"></span> -->
+            <input (cut)="forbidden()"
+            (copy)="forbidden()"
+            (paste)="forbidden()" formControlName="phoneNumber" placeholder="请输入手机号码" type="number" maxlength=11>
+            <button type="button" class="closeBtn" *ngIf="loginForm.controls['phoneNumber'].value" (click)="loginForm.controls['phoneNumber'].setValue('')">
+              <ion-icon name="ios-close"></ion-icon>
+            </button>
+          </div>
+        </ion-item>
+        <ion-item class="numberDiv1 numberPwd">
+          <div class="numberDiv">
+            <span class="left">密　码</span>
+            <!-- <span class="box" *ngIf="showPhoneBox"></span> -->
+            <input (cut)="forbidden()"
+            (copy)="forbidden()"
+            (paste)="forbidden()" formControlName="pwd" placeholder="请输入密码" [type]="showPwd? 'text':'password'" maxlength=11>
+            <button type="button" class="closeBtn" *ngIf="loginForm.controls['pwd'].value" (click)="showPwd = !showPwd">
+              <ion-icon [name]="showPwd?'md-eye-off':'md-eye'"></ion-icon>
+            </button>
+          </div>
+        </ion-item>                                                                                                                                                             
+        <ion-item class="secondItem">
+          <div class="numberDiv">
+            <span class="left">验证码</span>
+            <!-- <span class="box"></span> -->
+            <input formControlName="msgCode" placeholder="验证码" type="number" maxlength=11>
+            <button type="button" class="sedmsg" (click)="sendMsgCode()">
+              发送验证码
+            </button>
+          </div>
+        </ion-item>
+        <div class="aggreThis">
+          <ion-checkbox color="danger" formControlName="isCheck"></ion-checkbox>
+          <ion-label>我同意<span>天行者服务条款</span>及<span>互联网公约</span></ion-label>
+        </div>
+        <button class="loginBtn" ion-button full>注册</button>
+    </form>
+  
+    
+  
+  </ion-content>
+  

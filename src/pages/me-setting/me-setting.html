@@ -1,0 +1,145 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>个人设置</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-segment [(ngModel)]="type">
+    <ion-segment-button value="myInfo">
+      <div>
+        <ion-icon name="home"></ion-icon>
+        <p>个人信息</p>
+      </div>
+    </ion-segment-button>
+    <ion-segment-button value="account">
+      <div>
+        <ion-icon name="home"></ion-icon>
+        <p>账号密码</p>
+      </div>
+    </ion-segment-button>
+    <ion-segment-button value="safe">
+      <div>
+        <ion-icon name="home"></ion-icon>
+        <p>安全隐私</p>
+      </div>
+    </ion-segment-button>
+    <ion-segment-button value="other">
+      <div>
+        <ion-icon name="home"></ion-icon>
+        <p>其他设置</p>
+      </div>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div [ngSwitch]="type">
+    <ion-list class="bottomList" *ngSwitchCase="'myInfo'">
+      <ion-item>
+        <ion-label fixed>头像</ion-label>
+        <ion-avatar item-end (click)="getUserImg()">
+          <img src="{{imgBaseUrl}}" alt="">
+        </ion-avatar>
+      </ion-item>
+      <ion-item>
+        <ion-label>昵称</ion-label>
+        <ion-input>{{userInfo?.nickname}}</ion-input>
+      </ion-item>
+      <ion-item class="mySecondCode">
+        <ion-label>个人二维码</ion-label>
+        <img src="{{userInfo?.qrCodeImage}}" alt="" item-end>
+      </ion-item>
+      <ion-item>
+        <ion-label>地区</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>性别</ion-label>
+        <ion-input *ngIf="userInfo?.sex==='1'">女</ion-input>
+        <ion-input *ngIf="userInfo?.sex==='0'">男</ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>个性签名</ion-label>
+        <ion-input>{{userInfo?.sign}}</ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-list class="bottomList" *ngSwitchCase="'account'">
+      <ion-item>
+        <ion-label>账号<span class="tips">(主账号只允许修改一次)</span></ion-label>
+        <ion-input>{{userInfo?.userName}}</ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>密码</ion-label>
+        <ion-input>******</ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>手机号</ion-label>
+        <ion-input>{{userInfo?.mobilePhone}}</ion-input>
+      </ion-item>
+      <ion-item-divider color="light"></ion-item-divider>
+      <ion-item>
+        <ion-label>第三方账号</ion-label>
+        <ion-label style="text-align: right;"><ion-icon name="home"></ion-icon></ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>微信</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>QQ</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-list class="bottomList safeSetting" *ngSwitchCase="'safe'">
+      <ion-item>
+        <ion-label fixed>添加我为好友是否需要验证</ion-label>
+        <ion-toggle type="text" value="" [(ngModel)]="isNeedCer"></ion-toggle>
+      </ion-item>
+      <div class="myTips">可查询到我的方式</div>
+      <ion-item>
+        <ion-label fixed>账号</ion-label>
+        <ion-toggle type="text" value="" [(ngModel)]="accountFind"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>电话号码</ion-label>
+        <ion-toggle type="text" value="" [(ngModel)]="telFind"></ion-toggle>
+      </ion-item>
+      <div class="myTips">权限设置</div>
+      <ion-item>
+        <ion-label>个人信息查看权限</ion-label>
+        <ion-select [(ngModel)]="seeMyInfo" cancelText="取消" okText="确定">
+          <ion-option value="all">所有人</ion-option>
+          <ion-option value="onlyMe">仅自己</ion-option>
+          <ion-option value="onlyFriend">仅朋友</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>分享内容查看权限</ion-label>
+        <ion-select [(ngModel)]="shareContent" cancelText="取消" okText="确定">
+          <ion-option value="all">所有人</ion-option>
+          <ion-option value="onlyMe">仅自己</ion-option>
+          <ion-option value="onlyFriend">仅朋友</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>参与发布活动查看权限</ion-label>
+        <ion-select [(ngModel)]="attendActive" cancelText="取消" okText="确定">
+          <ion-option value="all">所有人</ion-option>
+          <ion-option value="onlyMe">仅自己</ion-option>
+          <ion-option value="onlyFriend">仅朋友</ion-option>
+        </ion-select>
+      </ion-item>
+      <div class="saveBtn">
+        <button ion-button full>保存</button>
+      </div>
+    </ion-list>
+    <ion-list class="bottomList" *ngSwitchCase="'other'">
+      <div class="otherDiv">
+        敬请期待...
+      </div>
+    </ion-list>
+  </div>
+</ion-content>
+

@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>个人中心</ion-title>
+    <div class="topBackground2"></div>
+    <img src="/assets/imgs/slide1.jpg" alt="">
+    <ion-buttons right class="rightBtn" (click)="goSettingPage()">
+      <button ion-button>
+        <ion-icon name="settings"></ion-icon>
+      </button>
+    </ion-buttons>
+    
+  </ion-navbar>
+  <div class="headImgDivOut">
+    <div class="imgDiv">
+      <img src="{{imgBaseUrl}}" alt="">
+    </div>
+    <div class="rightDiv">
+      <p class="name">{{userInfo?.nickname}}<ion-icon name="man"></ion-icon></p>
+      <div class="rightBot">
+        <div class="left">
+          <p>账号: {{userInfo?.userName||userInfo?.mobilePhone}}</p>
+          <p>个签: {{userInfo?.content||'我这个人很懒，没有说明'}}</p>
+        </div>
+        <div class="secondCodeImg">
+            <img src="assets/imgs/slide2.jpg" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-header>
+
+
+<ion-content>
+  <div class="fourMenu">
+    <div class="oneDiv">
+      <p><ion-icon name="home"></ion-icon></p>
+      <p class="bottomP">我的收藏</p>
+    </div>
+    <div class="oneDiv">
+      <p><ion-icon name="home"></ion-icon></p>
+      <p class="bottomP">我的行程</p>
+    </div>
+    <div class="oneDiv">
+      <p><ion-icon name="home"></ion-icon></p>
+      <p class="bottomP">我的订单</p>
+    </div>
+    <div class="oneDiv">
+      <p><ion-icon name="home"></ion-icon></p>
+      <p class="bottomP">我的贡献</p>
+    </div>
+  </div>
+  <ion-list>
+    <button ion-item (click)="itemSelected(item)">
+      我的朋友
+      <ion-icon name="ios-arrow-forward" float-right></ion-icon>
+    </button>  
+    <button ion-item (click)="goMyActivePage()">
+      我的活动
+      <ion-icon name="ios-arrow-forward" float-right></ion-icon>
+    </button>  
+    <button ion-item (click)="itemSelected(item)">
+      我的分享
+      <ion-icon name="ios-arrow-forward" float-right></ion-icon>
+    </button>  
+    <button ion-item (click)="itemSelected(item)">
+      我的目的地
+      <ion-icon name="ios-arrow-forward" float-right></ion-icon>
+    </button>  
+    <button ion-item (click)="itemSelected(item)">
+      商务合作
+      <ion-icon name="ios-arrow-forward" float-right></ion-icon>
+    </button>  
+    <button ion-item (click)="itemSelected(item)">
+      投诉建议
+      <ion-icon name="ios-arrow-forward" float-right></ion-icon>
+    </button>  
+  </ion-list>
+</ion-content>

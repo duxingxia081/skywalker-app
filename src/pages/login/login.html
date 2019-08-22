@@ -1,0 +1,69 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>登录</ion-title>
+    <ion-buttons class="rightBtn" (click)="toRegister()" right>
+      <button ion-button right>
+        注册
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <form [formGroup]="loginForm" (ngSubmit)="checkMsCode()">
+      <ion-item class="numberDiv1">
+        <div class="numberDiv">
+          <span class="left">手　机</span>
+          <!-- <span class="box" *ngIf="showPhoneBox"></span> -->
+          <input (cut)="forbidden()"
+          (copy)="forbidden()"
+          (paste)="forbidden()" formControlName="phoneNumber" placeholder="账号/手机号码" type="number" maxlength="11">
+          <button type="button" class="closeBtn" *ngIf="loginForm.controls['phoneNumber'].value" (click)="loginForm.controls['phoneNumber'].setValue('')">
+            <ion-icon name="ios-close"></ion-icon>
+          </button>
+        </div>
+      </ion-item>
+
+      <ion-item class="numberDiv1 numberPwd" *ngIf="loginStatus">
+        <div class="numberDiv">
+          <span class="left">密　码</span>
+          <!-- <span class="box" *ngIf="showPhoneBox"></span> -->
+          <input (cut)="forbidden()"
+          (copy)="forbidden()"
+          (paste)="forbidden()" formControlName="pwd" placeholder="请输入密码" [type]="showPwd? 'text':'password'" maxlength=11>
+          <button type="button" class="closeBtn" *ngIf="loginForm.controls['pwd'].value" (click)="showPwd = !showPwd">
+            <ion-icon [name]="showPwd?'md-eye-off':'md-eye'"></ion-icon>
+          </button>
+        </div>
+      </ion-item> 
+
+      <ion-item class="secondItem numberPwd" *ngIf="!loginStatus">
+        <div class="numberDiv">
+          <span class="left">验证码</span>
+          <!-- <span class="box"></span> -->
+          <input formControlName="msgCode" placeholder="验证码" type="number" maxlength=11>
+          <button type="button" class="sedmsg" (click)="sendMsgCode()">
+            发送验证码
+          </button>
+        </div>
+      </ion-item>
+      <p class="changeTextP" (click)="changeStatus()">{{ changeText }}</p>
+      <button class="loginBtn" ion-button full>登 录</button>
+  </form>
+
+  <div *ngIf="isShowOtherWay">
+    <div class="otherLoginWay">
+      <p></p>
+      <span>第三方登录</span>
+    </div>
+
+    <div class="loginImg">
+      <img src="assets/imgs/wechat.png" alt="">
+      <img src="assets/imgs/QQ.png" alt="">
+    </div>
+  </div>
+
+</ion-content>

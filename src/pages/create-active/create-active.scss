@@ -1,0 +1,200 @@
+page-create-active {
+    .toolbar-background {
+        background-color: #FFFFFF;
+    }
+    .splitP {
+        height: 1px;
+        margin-top: rem(6);
+        // @include border-b-dashed-1px(#000000);
+    }
+    .toolbar-background {
+        background: linear-gradient(to right, #3555DE, #628FF7)!important;
+    }
+    .toolbar-title {
+        color: #FFFFFF;
+    }
+    .bar-button-default, .bar-button-clear-default, .bar-button-default {
+        color: #FFFFFF;
+    }
+    .changeColor {
+        background-color: #3555DE;
+        color: #FFFFFF;
+    }
+    .content {
+        .scroll-content {
+            padding: rem(0) rem(10);
+            ion-scroll {
+                height: 115px;
+                .scroll-content {
+                    padding: 0;
+                }
+            }
+        }
+        .selectType {
+            display: flex;
+            overflow: hidden;
+            width: 1000px;
+            height: 115px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            li {
+                height: 115px;
+                width: 135px;
+                background-color: gold;
+                border: 1px solid #afafaf;
+                overflow: hidden;
+                border-radius: rem(5);
+                margin-right: 10px;
+                img {
+                    height: 85px;
+                }
+                p {
+                    margin: 0;
+                    text-align: center;
+                }
+            }
+        }
+        .manyLine {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            background-color: #eeeeee;
+            height: rem(45);
+            line-height: rem(45);
+            padding-left: rem(10);
+            margin-top: rem(20);
+            border-radius: rem(5);
+            input {
+                outline: none;
+                border: 0;
+                background-color: #eeeeee;
+                font-size: rem(12);
+                text-align: right;
+                padding-right: rem(10);
+                border-radius: rem(5);
+            }
+            .calP {
+                height: 100%;
+                line-height: rem(12);
+                margin-right: rem(5);
+                margin-top: rem(12);
+                button {
+                    width: rem(20);
+                    height: rem(20);
+                    font-size: rem(15);
+                    border-radius: 50%;
+                }
+            }
+            span {
+                color: #259b24;
+                font-size: rem(12);
+                padding-left: rem(18);
+                ion-icon {
+                    color: #000000;
+                    font-size: rem(18) !important;
+                    position: absolute;
+                    top: rem(14.5);
+                    left: rem(10);
+                }
+            }
+        }
+        .inputDiv {
+            border: 1px solid #000000;
+            margin-top: rem(20);
+            border-radius: rem(5);
+            overflow: hidden;
+            textarea {
+                width: 100%;
+                resize: none;
+                margin: 0;
+                padding: rem(5);
+                border: 0;
+                text-indent: rem(25);
+            }
+            button {
+                margin: 0;
+            }
+        }
+        .bottomImg {
+            margin: rem(10) 0 rem(115);
+            img {
+                float: left;
+                margin-right: rem(10);
+                width: rem(135);
+                height: rem(100);
+                border-radius: rem(5);
+            }
+        }
+        
+    }
+    .outMaskDiv {
+        height: 100%;
+        .choosePayType {
+            position: fixed;
+            width: 80%;
+            height: 50%;
+            top: 50%;
+            left: 50%;
+            margin-left: -40%;
+            margin-top: -35%;
+            background-color: #FFFFFF;
+            border: 1px solid #dedede;
+            border-radius: rem(5);
+            .flexType {
+                width: 80%;
+                margin: rem(30) auto rem(0);
+                display: flex;
+                justify-content: space-between;
+                span {
+                    width: rem(100);
+                    border: 1px solid #dedede;
+                    height: rem(40);
+                    border-radius: rem(5);
+                    line-height: rem(40);
+                    text-align: center;;
+                }
+            }
+            .inputMoney {
+                width: 80%;
+                margin: rem(25) auto;
+                height: rem(45);
+                line-height: rem(45);
+                background-color: #FFFFFF;
+                display: flex;
+                justify-content: space-between;
+                border: 1px solid #dedede;
+                border-radius: rem(2);
+                input {
+                    border: 0;
+                    outline: none;
+                    margin-left: rem(10);
+                }
+                span {
+                    margin-right: rem(10);
+                }
+            }
+            button {
+                position: absolute;
+                left: 50%;
+                bottom: rem(30);
+                margin-left: -40%;
+                width: 80%;
+                height: rem(45);
+                font-size: rem(18);
+            }
+        }
+        .mask {
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            opacity: 0.3;
+        }
+    }
+    .datetime {
+        padding-top: rem(15);
+    }
+    ion-datetime {
+        position: relative;
+    }
+}

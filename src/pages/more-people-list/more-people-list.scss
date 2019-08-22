@@ -1,0 +1,52 @@
+page-more-people-list {
+    .toolbar-background {
+        background: linear-gradient(to right, #3555DE, #628FF7)!important;
+    }
+    .toolbar-title {
+        color: #FFFFFF;
+    }
+    .topList {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin: rem(12) rem(16) rem(5);
+        margin-left: rem(25);
+        .item {
+            padding-left: 0;
+        }
+        ion-item {
+            width: 20%;
+            margin-left: rem(5);
+            height: rem(85);
+            .item-inner {
+                border-bottom: 0 !important;
+                padding-right: 0 !important;
+            }
+            ion-avatar {
+                min-height: rem(40);
+                min-width: rem(40);
+                img {
+                    height: rem(50);
+                    width: rem(50);
+                }
+            }
+            p {
+                font-size: rem(14);
+                padding-left: rem(3);
+                margin-top: rem(3);
+            }
+        }
+        .addItem {
+            ion-avatar {
+                border: 1px solid #000000;
+                width: rem(50);
+                height: rem(50);
+                border-radius: 50%;
+                line-height: rem(50);
+                font-size: rem(20);
+                font-weight: bold;
+                text-align: center;
+            }
+        }
+    }
+}

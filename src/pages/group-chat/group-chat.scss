@@ -1,0 +1,91 @@
+page-group-chat {
+    ion-header {
+        @include border-b-1px(#d2d1d1);
+        .back-button {
+            ion-icon {
+                color: #000000;
+            }
+        }
+        .rightBtn {
+            z-index: 9999;
+            ion-icon {
+                color: #000000 !important;
+            }
+        }
+        .toolbar-background {
+            background-color: #FFFFFF;
+        }
+    }
+
+    .content {
+        ion-list {
+            .item-inner {
+                border: 0 !important;
+                .label {
+                    margin-bottom: rem(0);
+                }
+            }
+            .leftSan {
+                float: left;
+                width:0;
+                height:0;
+                margin-top: rem(12);
+                margin-left: rem(12);
+                border-top:8px solid transparent;
+                border-right:8px solid rgb(141, 250, 105);
+                border-bottom:8px solid transparent;
+            }
+            .rightSan {
+                float: right;
+                width:0;
+                height:0;
+                margin-top: rem(11);
+                margin-right: rem(12);
+                border-top:8px solid transparent;
+                border-left:8px solid rgb(141, 250, 105);
+                border-bottom:8px solid transparent;
+            }
+            .leftP, .rightP {
+                max-width: 70%;
+                float: left;
+                margin-top: rem(5);
+                white-space: initial;
+                background-color: rgb(141, 250, 105);
+                border-radius: rem(5);
+                span {
+                    display: inline-block;
+                    padding: rem(5) rem(10);
+                    font-size: rem(15);
+                    color: #000000;
+                }
+            }
+            .rightP {
+                float: right;
+            }
+            .floatLeft {
+                float: left;
+            }
+            .floatRight {
+                float: right;
+            }
+        }
+    }
+    .footerDivOut {
+        @include border-t-1px(#dedede);
+        overflow: hidden;
+        .footerDiv {
+            margin: rem(10) rem(0);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 rem(16);
+            textarea {
+                width: 70%;
+                resize: none;
+            }
+            ion-icon {
+                font-size: rem(35);
+                margin-top: rem(2);
+            }
+        }
+    }
+}

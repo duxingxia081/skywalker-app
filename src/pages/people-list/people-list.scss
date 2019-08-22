@@ -1,0 +1,99 @@
+page-people-list {
+    .toolbar-background {
+        background: linear-gradient(to right, #3555DE, #628FF7)!important;
+    }
+    .toolbar-title {
+        color: #FFFFFF;
+    }
+
+    .content {
+        .topList {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: rem(12) rem(16) rem(5);
+            margin-left: rem(25);
+            .item {
+                padding-left: 0;
+            }
+            ion-item {
+                width: 20%;
+                margin-left: rem(5);
+                height: rem(85);
+                .item-inner {
+                    border-bottom: 0 !important;
+                    padding-right: 0 !important;
+                }
+                ion-avatar {
+                    min-height: rem(40);
+                    min-width: rem(40);
+                    img {
+                        height: rem(50);
+                        width: rem(50);
+                    }
+                }
+                p {
+                    font-size: rem(14);
+                    padding-left: rem(3);
+                    margin-top: rem(3);
+                }
+            }
+            .addItem {
+                ion-avatar {
+                    border: 1px solid #000000;
+                    width: rem(50);
+                    height: rem(50);
+                    border-radius: 50%;
+                    line-height: rem(50);
+                    font-size: rem(20);
+                    font-weight: bold;
+                    text-align: center;
+                }
+            }
+        }
+        
+    }
+    .showMorePeople {
+        text-align: center;
+        color: #9a9a9a;
+        width: rem(122);
+        margin: rem(0) auto;
+        ion-icon {
+            float: right;
+            margin-top: rem(2.5);
+        }
+    }
+    .divider {
+        height: rem(10);
+        background-color: #d6d6d6;
+    }
+
+    .bottomList {
+        margin: rem(0) rem(16) rem(45);
+        .item-inner {
+            padding-right: 0 !important;
+        }
+        ion-item {
+            
+            padding-left: rem(0);
+            ion-label {
+                color: #939393;
+                font-size: rem(14);
+                padding-left: rem(0);
+            }
+            input {
+                text-align: right;
+                color: #6ed7ff;
+            }
+        }
+    }
+    .exitChat {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: rem(45);
+        margin-bottom: rem(0);
+        font-size: rem(14);
+    }
+}

@@ -1,0 +1,89 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>发布活动</ion-title>
+    <ion-buttons right class="rightBtn">
+      <button ion-button><ion-icon name="home"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <p class="splitP"></p>
+    <ion-scroll scrollX="true">
+      <ul class="selectType" [ngStyle]="{ 'width': ulWidth }">
+        <li *ngFor="let obj of chooseCreateType">
+          <img src="{{ obj.imgPath }}" alt="">
+          <p>{{ obj.title }}</p>
+        </li>
+      </ul>
+    </ion-scroll>
+    <div class="manyLine">
+      <span><ion-icon name="pin"></ion-icon> 活动标题</span>
+      <input type="text" placeholder="请输入...">
+    </div>
+    <div class="manyLine">
+      <span><ion-icon name="pin"></ion-icon> 出发地</span>
+      <input type="text" placeholder="请输入..." value="深圳">
+    </div>
+    <div class="manyLine">
+      <span><ion-icon name="pin"></ion-icon> 目的地</span>
+      <input type="text" placeholder="请输入..." value="大理, 冰雪长城, 玉龙血脉">
+    </div>
+    <div class="manyLine">
+      <span><ion-icon name="pin"></ion-icon> 出发时间</span>
+      <ion-datetime displayFormat="YYYY-MM-DD" placeholder="选择日期"  min="1999-01-01" cancelText="取 消" doneText="确 定" [(ngModel)]="myDate"></ion-datetime>
+      <p class="calP">
+        <span>共</span>
+        <span>
+          <button (click)="reduceDay()">-</button>
+        </span>
+        <span>{{ allDay }}</span>
+        <span>
+          <button (click)="addDay()">
+          +
+        </button></span>
+      </p>
+    </div>
+    <div class="manyLine">
+      <span><ion-icon name="pin"></ion-icon> 费用</span>
+      <input type="text" placeholder="请输入..." value="AA" (click)="goSelectPyType()">
+    </div>
+    <div class="manyLine" (click)="goCreateLine()">
+      <span><ion-icon name="pin"></ion-icon> 创建行程</span>
+      <input type="text" placeholder="请输入...">
+    </div>
+    <div class="inputDiv">
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+        <button ion-button full>Full Button</button>
+    </div>
+    <div class="bottomImg">
+      <img src="assets/imgs/slide0.jpg" alt="">
+      <img src="assets/imgs/slide0.jpg" alt="">
+    </div>
+
+    
+</ion-content>
+
+<div *ngIf="showChoosePayType" class="outMaskDiv">
+  <div class="mask" (click)="closeByMask()"></div>
+  <div class="choosePayType">
+    <div class="flexType">
+      <span [ngClass]="{'changeColor': isSelect}" (click)="changePayType()">AA</span>
+      <span [ngClass]="{'changeColor': !isSelect}" (click)="changePayType()">非AA</span>
+    </div>
+    <div *ngIf="!isSelect">
+      <div class="inputMoney">
+        <input type="number" placeholder="成人">
+        <span>￥</span>
+      </div>
+      <div class="inputMoney">
+        <input type="number" placeholder="小孩">
+        <span>￥</span>
+      </div>
+    </div>
+    <button ion-button full>确定</button>
+  </div>
+</div>

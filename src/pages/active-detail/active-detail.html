@@ -1,0 +1,155 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>活动详情</ion-title>
+    <div class="topBackground2"></div>
+    <img src="/assets/imgs/slide0.jpg" alt="">
+    <ion-buttons right class="rightBtn" (click)="goCreateTrval()" *ngIf="!comeInSelf">
+      <button ion-button>
+        <ion-icon name="md-share-alt"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons right class="rightBtn" (click)="getSettingOptions($event);$event.stopPropagation();" *ngIf="comeInSelf">
+      <button ion-button>
+        <ion-icon name="ios-settings"></ion-icon>
+      </button>
+    </ion-buttons>
+    <span class="trvalType">自驾游</span>
+    <p class="goodNumber">
+      <span><ion-icon name="home"></ion-icon> 5200</span>
+      <span><ion-icon name="home"></ion-icon> 5200</span>
+    </p>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-item class="createMan">
+    <ion-avatar item-start>
+      <img src="assets/imgs/slide0.jpg" alt="">
+    </ion-avatar>
+    <h3>Finn</h3>
+    <h3>Don't Know What To Do!</h3>
+    <p>发布者: 吴彦祖</p>
+  </ion-item>
+  <div class="itemDiv">
+    <span>
+        <ion-icon name="pin"></ion-icon> 出发地
+    </span>
+    <span class="rightSpan">深圳</span>
+  </div>
+  <div class="itemDiv">
+    <span>
+        <ion-icon name="pin"></ion-icon> 目的地
+    </span>
+    <span class="rightSpan">冰雪长城, 玉龙血脉,</span>
+  </div>
+  <div class="itemDiv">
+    <span>
+        <ion-icon name="pin"></ion-icon> 出发日期
+    </span>
+    <span class="rightSpan">2018-10-01 出发, 约7天</span>
+  </div>
+  <div class="itemDiv">
+    <span>
+        <ion-icon name="pin"></ion-icon> 费用
+    </span>
+    <span class="rightSpan">AA</span>
+  </div>
+
+  <div class="headImages" (click)="goPeopleList()">
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="assets/imgs/slide0.jpg">
+      </ion-avatar>
+      <ion-avatar item-start>
+        <img src="assets/imgs/slide0.jpg">
+      </ion-avatar>
+      <ion-avatar item-start>
+        <img src="assets/imgs/slide0.jpg">
+      </ion-avatar>
+      <ion-avatar item-start>
+        <img src="assets/imgs/slide0.jpg">
+      </ion-avatar>
+      <ion-avatar item-start>
+        <img src="assets/imgs/slide0.jpg">
+      </ion-avatar>
+      <span class="perpleNumber">10+</span>
+    </ion-item>
+  </div>
+  <ion-item class="goDetileTitle" (click)="goTravelDetail()">
+    <p>
+      云南自驾游七日行程
+      <ion-icon name="ios-arrow-forward" right></ion-icon>
+    </p>
+    <div class="dashedLine"></div>
+    <div class="line">
+      <span>大理</span>
+      <span>玉龙血脉</span>
+      <span>沁园春</span>
+      <span>......</span>
+    </div>
+  </ion-item>
+  <div class="introduce">
+    景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处
+    景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处景点介绍处<br>
+  </div>
+  <ion-item class="liuYanText">
+    <p>
+      留言讨论
+      <ion-icon name="text" float-right></ion-icon>
+    </p>
+  </ion-item>
+  <ion-list class="commentList" [ngClass]="{'noBottomClass':isShowCommentDiv}">
+    <div class="commentInfo">
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="assets/imgs/slide0.jpg" alt="">
+        </ion-avatar>
+        <h3>吴彦祖</h3>
+        <span item-end>2018-02-05</span>
+      </ion-item>
+      <p>
+        <span>这条评论表较长， 以为内我很想知道我去的地方是怎么样的， 有没有卢萨卡的解放路酒店管理</span>
+        <span><ion-icon name="text" float-right></ion-icon></span>
+      </p>
+    </div>
+    <div class="commentInfo">
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="assets/imgs/slide0.jpg" alt="">
+        </ion-avatar>
+        <h3>吴彦祖</h3>
+        <span item-end>2018-02-05</span>
+      </ion-item>
+      <p>
+        <span>评论内容了</span>
+        <span><ion-icon name="text" float-right></ion-icon></span>
+      </p>
+    </div>
+    <div class="commentInfo lastCommentInfo">
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="assets/imgs/slide0.jpg" alt="">
+        </ion-avatar>
+        <h3>吴彦祖</h3>
+        <span item-end>2018-02-05</span>
+      </ion-item>
+      <p>
+        <span>评论内容了</span>
+        <span><ion-icon name="text" float-right></ion-icon></span>
+      </p>
+    </div>
+  </ion-list>
+  <div class="btmDivOut" *ngIf="isShowCommentDiv">
+    <div class="btmDiv">
+      <textarea name="" placeholder="写评论"></textarea>
+      <ion-icon name="ios-people" (click)="goGroupChat()"></ion-icon>
+      <ion-icon name="ios-star-outline"></ion-icon>
+      <ion-icon name="ios-share-alt-outline"></ion-icon>
+    </div>
+  </div>
+</ion-content>
+<button ion-button full primary class="addBtn" *ngIf="!isShowCommentDiv" (click)="clickAddBtn()">立即参加</button>
+

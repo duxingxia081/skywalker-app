@@ -1,0 +1,158 @@
+<ion-header>
+  <ion-navbar class="firstPage">
+    <div class="topBackground2"></div>
+    <div class="topIcon">
+      <ion-buttons left class="firstBtn">
+        <button ion-button>
+          <ion-icon name="pin"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-buttons right>
+        <button ion-button>
+          <ion-icon name="search" style="padding: 0;"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-buttons right (click)="goCreateTrval()">
+        <button ion-button>
+          <ion-icon name="add" style="padding-left: 0;"></ion-icon>
+        </button>
+      </ion-buttons>
+    </div>
+    <ion-slides pager autoplay="3000" loop="true" autoplayDisableOnInteraction = "true">
+      <ion-slide><img src="/assets/imgs/slide0.jpg" alt=""></ion-slide>
+      <ion-slide><img src="/assets/imgs/slide1.jpg" alt=""></ion-slide>
+      <ion-slide><img src="/assets/imgs/slide2.jpg" alt=""></ion-slide>
+    </ion-slides>
+  </ion-navbar>
+    <ion-segment [(ngModel)]="type">
+      <ion-segment-button value="0">
+        最新推荐
+      </ion-segment-button>
+      <ion-segment-button value="2">
+        自驾游
+      </ion-segment-button>
+      <ion-segment-button value="3">
+        亲子游
+      </ion-segment-button>
+      <ion-segment-button value="4">
+        户外约伴
+      </ion-segment-button>
+    </ion-segment>
+
+</ion-header>
+
+<ion-content>
+  <div [ngSwitch]="type">
+    <ion-list *ngSwitchCase="0">
+      <ion-item *ngFor="let obj of listActivity" (click)="goDetailPage(obj)">
+        <div class="listDiv">
+          <div class="imgDiv">
+            <img  *ngIf="obj.listActiveImgDTO?.length>0" src="{{BASE_URL+obj.listActiveImgDTO[0].imageUrl}}" alt="">
+            <img  *ngIf="obj.listActiveImgDTO?.length==0" src="assets/imgs/slide0.jpg" alt="">
+          </div>
+          <div>
+            <p class="title">{{ obj.activeTitle }}</p>
+            <p class="goodNumber">
+              <span><ion-icon name="home"></ion-icon> {{ obj.charge }}</span>
+              <span><ion-icon name="home"></ion-icon> {{ obj.charge }}</span>
+            </p>
+            <ion-avatar item-start class="sendImg">
+              <img  *ngIf="null!=obj.headImage" src="{{'data:image/jpg;base64,'+obj.headImage}}" alt="">
+              <img  *ngIf="null==obj.headImage" src="assets/imgs/slide0.jpg" alt="">
+            </ion-avatar>
+            <p class="whoSend">
+              <span class="sss">本活动由<font color="red">{{ obj.nickname }}</font>发起</span>
+              <span class="trvalType">{{ obj.typeName }}</span>
+            </p>
+            <div class="flexDiv">
+              <div>
+                <p>
+                  <ion-icon name="pin"></ion-icon>
+                  <span> {{ obj.startAddressName }}-->{{ obj.endAddressName }}</span>
+                </p>
+                <p>
+                  <ion-icon name="md-calendar"></ion-icon>
+                  <span> {{ obj.goTime }} 出发, 约{{ obj.days }}天行程</span>
+                </p>
+              </div>
+              <div class="freeDiv">
+                <p class="p1">{{ obj.charge }}</p>
+                <p class="p2">费用</p>
+              </div>
+            </div>
+          </div>
+          <p class="splitLine"></p>
+          <div class="picListDiv">
+            <ion-item>
+              <ion-avatar item-start>
+                <img src="assets/imgs/slide0.jpg">
+              </ion-avatar>
+              <ion-avatar item-start>
+                <img src="assets/imgs/slide0.jpg">
+              </ion-avatar>
+              <ion-avatar item-start>
+                <img src="assets/imgs/slide0.jpg">
+              </ion-avatar>
+              <ion-avatar item-start>
+                <img src="assets/imgs/slide0.jpg">
+              </ion-avatar>
+              <ion-avatar item-start>
+                <img src="assets/imgs/slide0.jpg">
+              </ion-avatar>
+              <span class="perpleNumber">10+</span>
+            </ion-item>
+
+          </div>
+          
+        </div>
+      </ion-item>
+      <ion-infinite-scroll (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles"
+        loadingText="加载中..."></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="2">
+      <ion-item *ngFor="let obj of listActivity" (click)="goDetailPage(obj)">
+        <div class="selfListDiv">
+          <ion-avatar>
+            <img src="assets/imgs/slide0.jpg" alt="">
+          </ion-avatar>
+          <div class="twoFlex">
+            <div class="imgDiv">
+              <img src="assets/imgs/slide0.jpg" alt="">
+            </div>
+            <div class="rightDiv">
+              <p class="title">{{ obj.title }}</p>
+              <p>
+                <ion-icon name="pin"></ion-icon>
+                <span> {{ obj.pos }}</span>
+              </p>
+              <p>
+                <ion-icon name="md-calendar"></ion-icon>
+                <span> {{ obj.startDate }} 出发, 约5天</span>
+              </p>
+              <p class="splitLine"></p>
+              <p class="noTopP">
+                <span class="num">{{ obj.perpleNum }}</span>
+                <span class="goodNum"><ion-icon name="home"></ion-icon> {{ obj.goodNum }}</span>
+                <span class="goodNum goodNum1"><ion-icon name="home"></ion-icon> {{ obj.commentNum }}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </ion-item>
+      <ion-infinite-scroll (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles"
+        loadingText="加载中..."></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </ion-list>
+    <ion-list *ngSwitchCase="3">
+      亲子游
+    </ion-list>
+    <ion-list *ngSwitchCase="4">
+      户外约伴
+    </ion-list>
+  </div>
+</ion-content>
+
