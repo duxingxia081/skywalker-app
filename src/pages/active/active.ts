@@ -44,6 +44,7 @@ export class ActivePage implements OnInit, OnChanges {
     };
     this.dataProvider.getData('activity', params).subscribe(
       res => {
+        console.log(res);
         if (null != res && res.code === '0' && res.data != null) {
           if (event) {
             const newData: Array<any> = res.data.list;

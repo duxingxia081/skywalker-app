@@ -6,6 +6,7 @@ export class UserInfo {
   public authorization: string;
   public userInfo: any;
   public imgBaseUrl = 'assets/imgs/slide1.jpg';
+  public qrCodeImage = 'assets/imgs/QrCodeImage.jpg';
 
   constructor(protected navCtrl: NavController, protected dataService: DataService) {
     this.getAuthorization();
