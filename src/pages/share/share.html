@@ -1,17 +1,82 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Contact
-    </ion-title>
+  <ion-navbar class="firstPage">
+    <div class="topBackground2"></div>
+    <div class="topIcon">
+      <ion-buttons left class="firstBtn">
+        <button ion-button>
+          <ion-icon name="pin"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-buttons right>
+        <button ion-button>
+          <ion-icon name="search" style="padding: 0;"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-buttons right (click)="goCreateTrval()">
+        <button ion-button>
+          <ion-icon name="add" style="padding-left: 0;"></ion-icon>
+        </button>
+      </ion-buttons>
+    </div>
+    <ion-slides pager autoplay="3000" loop="true" autoplayDisableOnInteraction = "true">
+      <ion-slide><img src="/assets/imgs/slide0.jpg" alt=""></ion-slide>
+      <ion-slide><img src="/assets/imgs/slide1.jpg" alt=""></ion-slide>
+      <ion-slide><img src="/assets/imgs/slide2.jpg" alt=""></ion-slide>
+    </ion-slides>
   </ion-navbar>
-</ion-header>
+    <ion-segment [(ngModel)]="type">
+      <ion-segment-button value="attention">
+        关注
+      </ion-segment-button>
+      <ion-segment-button value="recommend">
+        推荐
+      </ion-segment-button>
+      <ion-segment-button value="travels">
+        游记
+      </ion-segment-button>
+      <ion-segment-button value="raiders">
+        攻略
+      </ion-segment-button>
+      <ion-segment-button value="video">
+        视频
+      </ion-segment-button>
+      <ion-segment-button value="liveBoardcast">
+        直播
+      </ion-segment-button>
+    </ion-segment>
 
+</ion-header>
 <ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
-    </ion-item>
-  </ion-list>
+  <div [ngSwitch]="type">
+    <ion-list *ngSwitchCase="'attention'">
+      <ion-item *ngFor="let note of notes">
+        <div class="img-box">
+          <img src="/assets/imgs/slide1.jpg" alt=""/>
+          <h4 class="tit">{{note.title}}</h4>
+          <span class="tag">{{note.tag}}</span>
+        </div>
+        <div class="publish-info">
+          <ion-avatar>
+            <img src="/assets/imgs/slide0.jpg" alt="">
+          </ion-avatar>
+          <dl class="left">
+            <dt>{{note.author}}</dt>
+            <dd><ion-icon name="pin"></ion-icon>{{note.pos}}</dd>
+          </dl>
+          <div class="right">
+            <p>
+              <span><ion-icon name="heart-empty"></ion-icon>{{note.collectionNum}}</span>
+              <span><ion-icon name="chatboxes"></ion-icon>{{note.messageNum}}</span>
+            </p>
+            <time>{{note.publishTime}}</time>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'recommend'">推荐</ion-list>
+    <ion-list *ngSwitchCase="'travels'">游记</ion-list>
+    <ion-list *ngSwitchCase="'raiders'">攻略</ion-list>
+    <ion-list *ngSwitchCase="'video'">视频</ion-list>
+    <ion-list *ngSwitchCase="'liveBoardcast'">直播</ion-list>
+  </div>
 </ion-content>

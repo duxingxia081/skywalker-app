@@ -37,59 +37,66 @@
 
   <div [ngSwitch]="type">
     <ion-list class="bottomList" *ngSwitchCase="'myInfo'">
-      <ion-item>
+      <ion-item (click)="getUserImg()">
         <ion-label fixed>头像</ion-label>
-        <ion-avatar item-end (click)="getUserImg()">
+        <ion-avatar item-end>
           <img src="{{imgBaseUrl}}" alt="">
         </ion-avatar>
       </ion-item>
       <ion-item>
         <ion-label>昵称</ion-label>
-        <ion-input>{{userInfo?.nickname}}</ion-input>
+        <ion-input (click)="nickName()" readonly="true" value="{{userInfo?.nickname}}"></ion-input>
       </ion-item>
       <ion-item class="mySecondCode">
-        <ion-label>个人二维码</ion-label>
-        <img src="{{userInfo?.qrCodeImage}}" alt="" item-end>
+        <ion-label (click)="getQrCodeImage()">个人二维码</ion-label>
+        <img src="{{userInfo?.qrCodeImage}}" alt="">
       </ion-item>
       <ion-item>
         <ion-label>地区</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" readonly="true" (click)="area()" value={{userInfo?.address}}></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>性别</ion-label>
-        <ion-input *ngIf="userInfo?.sex==='1'">女</ion-input>
-        <ion-input *ngIf="userInfo?.sex==='0'">男</ion-input>
+        <!-- <ion-input *ngIf="userInfo?.sex==='1'">女</ion-input>
+        <ion-input *ngIf="userInfo?.sex==='0'">男</ion-input> -->
+        <ion-select [(ngModel)]="gender" cancelText="取消" okText="确定">
+          <ion-option value="male">男</ion-option>
+          <ion-option value="female">女</ion-option>
+          <ion-option value="secrecy">保密</ion-option>
+        </ion-select>
       </ion-item>
       <ion-item>
         <ion-label>个性签名</ion-label>
-        <ion-input>{{userInfo?.sign}}</ion-input>
+        <!-- <ion-input (click)="sign()">{{userInfo?.sign}}</ion-input> -->
+        <ion-textarea (click)="sign()" value="" readonly="true" value={{userInfo?.sign}}>
+        </ion-textarea>
       </ion-item>
     </ion-list>
     <ion-list class="bottomList" *ngSwitchCase="'account'">
       <ion-item>
         <ion-label>账号<span class="tips">(主账号只允许修改一次)</span></ion-label>
-        <ion-input>{{userInfo?.userName}}</ion-input>
+        <ion-input placeholder="" readonly="true" (click)="account()" value="{{userInfo?.userName}}"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>密码</ion-label>
-        <ion-input>******</ion-input>
+        <ion-input placeholder="" readonly="true" (click)="password()" value="{{userInfo?.oldPassword}}">******</ion-input>
       </ion-item>
       <ion-item>
         <ion-label>手机号</ion-label>
-        <ion-input>{{userInfo?.mobilePhone}}</ion-input>
+        <ion-input placeholder="" readonly="true" (click)="mobilePhone()" value="{{userInfo?.mobilePhone}}"></ion-input>
       </ion-item>
       <ion-item-divider color="light"></ion-item-divider>
       <ion-item>
         <ion-label>第三方账号</ion-label>
-        <ion-label style="text-align: right;"><ion-icon name="home"></ion-icon></ion-label>
+        <ion-label style="text-align: right;"><ion-icon name="add"></ion-icon></ion-label>
       </ion-item>
       <ion-item>
         <ion-label>微信</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" (click)="weChat()" readonly="true" value="{{userInfo?.wechatId}}"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>QQ</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" (click)="qq()" readonly="true" value="{{userInfo?.qqId}}"></ion-input>
       </ion-item>
     </ion-list>
     <ion-list class="bottomList safeSetting" *ngSwitchCase="'safe'">

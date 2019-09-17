@@ -1,3 +1,129 @@
 page-share {
-
+    .search {
+        margin-right: rem(10);
+    }
+    .topBackground2{
+        position: absolute;
+        background: -webkit-linear-gradient(#000, rgba(1, 1, 1, 0)); /* Safari 5.1 - 6.0 */
+        background: -o-linear-gradient(#000, rgba(1, 1, 1, 0)); /* Opera 11.1 - 12.0 */
+        background: -moz-linear-gradient(#000, rgba(1, 1, 1, 0)); /* Firefox 3.6 - 15 */
+        background: linear-gradient(#000, rgba(1, 1, 1, 0)); /* 标准的语法（必须放在最后） */
+        z-index: 998;
+        width: 100%;
+        opacity: 0.3;
+        border: 0;
+        height: rem(80);
+        top: 0;
+        left: 0;
+    }
+    .topIcon {
+        display: flex;
+        position: absolute;
+        top: rem(30);
+        left: 0;
+        right: 0;
+        z-index: 999;
+        .firstBtn {
+            flex: 1;
+            text-align: left;
+            padding-left: rem(5);
+        }
+        ion-icon {
+            color: #ffffff;
+            font-size: rem(20);
+        }
+    }
+    ion-slides {
+        background-color: #FFFFFF;
+    }
+    //2019-9
+    .img-box{
+        min-height:rem(168);
+        width:100%;
+        position: relative;
+        img{
+            width:100%;
+            display:block;
+            border-radius:rem(5);
+        }
+        h4{
+            position:absolute;
+            font-size:rem(16);
+            left:rem(9);
+            top:rem(7);
+            color:#101010;
+            text-overflow:ellipsis;
+            width:80%;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .tag{
+            display:block;
+            position: absolute;
+            right:rem(7);
+            top:rem(7);
+            border:1px solid #5ED8F2;
+            border-radius:rem(4);
+            min-width:rem(24);
+            text-align:center;
+            line-height:rem(20);
+            color:#5ED8F2;
+            font-size:rem(12);
+            padding:0 rem(10);
+        }
+    }
+    .publish-info{
+        padding-left:rem(46);
+        overflow: hidden;
+        position: relative;
+        ion-avatar{
+            position: absolute;
+            left:0;
+            top:50%;
+            margin-top:rem(-18);
+        }
+        dl{
+            float:left;
+            margin:rem(12) 0 0;
+            dt{
+                font-size:rem(14);
+                color:#5ED8F2;
+            }
+            dd{
+                font-size:rem(12);
+                margin-left:0;
+                color:#101010;
+                ion-icon{
+                    margin-right:rem(5);
+                    position: relative;
+                    top:rem(1);
+                }
+            }
+        }
+        .right{
+            float:right;
+            margin:rem(12) 0 0;
+            p{
+                ion-icon{
+                    margin-right:rem(5);
+                    position: relative;
+                    top:rem(2);
+                }
+                span{
+                    line-height:rem(20);
+                    color: #4a4a4a;
+                    font-size:rem(14);
+                    &:last-child{
+                        margin-left:rem(5);
+                    }
+                }
+                
+            }
+            time{
+                display: block;
+                font-size:rem(14);
+                color:#a8a8a8;
+            }
+        }
+    }
 }
